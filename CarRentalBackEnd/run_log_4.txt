@@ -1,0 +1,238 @@
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/C:/Users/sumit/.m2/wrapper/dists/apache-maven-3.9.11/03d7e36a140982eea48e22c1dcac01d8862b2550b2939e09a0809bbc5182a5bc/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------< com.cdac:carRental_backend_secured_jwt >---------------
+[INFO] Building carRental_backend_secured_jwt 0.0.1
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.5.7:run (default-cli) > test-compile @ carRental_backend_secured_jwt >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ carRental_backend_secured_jwt ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ carRental_backend_secured_jwt ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ carRental_backend_secured_jwt ---
+[INFO] skip non existing resourceDirectory E:\cdac project\CarRentalBackEnd\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ carRental_backend_secured_jwt ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:3.5.7:run (default-cli) < test-compile @ carRental_backend_secured_jwt <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.5.7:run (default-cli) @ carRental_backend_secured_jwt ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.7)
+
+2026-01-22T23:24:30.866+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] c.carRental.CarRentalBackendApplication  : Starting CarRentalBackendApplication using Java 24.0.1 with PID 28632 (E:\cdac project\CarRentalBackEnd\target\classes started by sumit in E:\cdac project\CarRentalBackEnd)
+2026-01-22T23:24:30.867+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] c.carRental.CarRentalBackendApplication  : No active profile set, falling back to 1 default profile: "default"
+2026-01-22T23:24:30.908+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-01-22T23:24:30.908+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-01-22T23:24:31.849+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-22T23:24:31.936+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 77 ms. Found 7 JPA repository interfaces.
+2026-01-22T23:24:32.504+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-01-22T23:24:32.520+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-22T23:24:32.520+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-01-22T23:24:32.569+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-22T23:24:32.570+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1660 ms
+2026-01-22T23:24:32.827+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-22T23:24:32.906+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.33.Final
+2026-01-22T23:24:32.944+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-01-22T23:24:33.241+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-22T23:24:33.272+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-22T23:24:33.523+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4d640a5c
+2026-01-22T23:24:33.525+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-01-22T23:24:33.586+05:30  WARN 28632 --- [car_rental_backend] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-22T23:24:33.605+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-22T23:24:34.762+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-22T23:24:34.851+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldOffset has been called by org.modelmapper.internal.typetools.TypeResolver (file:/C:/Users/sumit/.m2/repository/org/modelmapper/modelmapper/3.2.5/modelmapper-3.2.5.jar)
+WARNING: Please consider reporting this to the maintainers of class org.modelmapper.internal.typetools.TypeResolver
+WARNING: sun.misc.Unsafe::staticFieldOffset will be removed in a future release
+2026-01-22T23:24:35.383+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-22T23:24:36.570+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-01-22T23:24:36.629+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsServiceImpl
+2026-01-22T23:24:36.734+05:30 DEBUG 28632 --- [car_rental_backend] [  restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, CustomJwtFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-01-22T23:24:37.190+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-01-22T23:24:37.276+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-01-22T23:24:37.292+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] c.carRental.CarRentalBackendApplication  : Started CarRentalBackendApplication in 6.808 seconds (process running for 7.23)
+2026-01-22T23:24:37.393+05:30  WARN 28632 --- [car_rental_backend] [  restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-01-22T23:24:37.393+05:30  WARN 28632 --- [car_rental_backend] [  restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-01-22T23:25:16.763+05:30  INFO 28632 --- [car_rental_backend] [nio-8080-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-22T23:25:16.763+05:30  INFO 28632 --- [car_rental_backend] [nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-01-22T23:25:16.766+05:30  INFO 28632 --- [car_rental_backend] [nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-01-22T23:25:16.790+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/index.html
+2026-01-22T23:25:16.801+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-01-22T23:25:16.807+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/index.html
+2026-01-22T23:25:16.929+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-ui.css
+2026-01-22T23:25:16.933+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-01-22T23:25:16.934+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/index.css
+2026-01-22T23:25:16.934+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-01-22T23:25:16.935+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-ui-bundle.js
+2026-01-22T23:25:16.935+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-initializer.js
+2026-01-22T23:25:16.935+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-ui.css
+2026-01-22T23:25:16.935+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/swagger-ui-standalone-preset.js
+2026-01-22T23:25:16.935+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/index.css
+2026-01-22T23:25:16.936+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-01-22T23:25:16.936+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-01-22T23:25:16.936+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-01-22T23:25:16.936+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-ui-bundle.js
+2026-01-22T23:25:16.936+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-initializer.js
+2026-01-22T23:25:16.936+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/swagger-ui-standalone-preset.js
+2026-01-22T23:25:17.152+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/favicon-32x32.png
+2026-01-22T23:25:17.155+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-01-22T23:25:17.156+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/favicon-32x32.png
+2026-01-22T23:25:17.184+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /v3/api-docs/swagger-config
+2026-01-22T23:25:17.186+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-01-22T23:25:17.187+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /v3/api-docs/swagger-config
+2026-01-22T23:25:17.192+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /swagger-ui/favicon-32x32.png
+2026-01-22T23:25:17.193+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-01-22T23:25:17.194+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /swagger-ui/favicon-32x32.png
+2026-01-22T23:25:17.262+05:30 DEBUG 28632 --- [car_rental_backend] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /v3/api-docs
+2026-01-22T23:25:17.263+05:30 DEBUG 28632 --- [car_rental_backend] [io-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-01-22T23:25:17.263+05:30 DEBUG 28632 --- [car_rental_backend] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /v3/api-docs
+2026-01-22T23:25:17.802+05:30  INFO 28632 --- [car_rental_backend] [io-8080-exec-10] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 525 ms
+2026-01-22T23:25:42.663+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/cars
+2026-01-22T23:25:42.663+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-01-22T23:25:42.669+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-1] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-01-22T23:25:42.679+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /error
+2026-01-22T23:25:42.681+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-01-22T23:25:42.682+05:30 DEBUG 28632 --- [car_rental_backend] [nio-8080-exec-1] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-01-22T23:26:42.314+05:30  INFO 28632 --- [car_rental_backend] [   File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-01-22T23:26:42.322+05:30  INFO 28632 --- [car_rental_backend] [       Thread-5] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-22T23:26:42.330+05:30  INFO 28632 --- [car_rental_backend] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-01-22T23:26:42.336+05:30  INFO 28632 --- [car_rental_backend] [       Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-22T23:26:42.344+05:30  INFO 28632 --- [car_rental_backend] [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-01-22T23:26:42.351+05:30  INFO 28632 --- [car_rental_backend] [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.7)
+
+2026-01-22T23:26:42.462+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] c.carRental.CarRentalBackendApplication  : Starting CarRentalBackendApplication using Java 24.0.1 with PID 28632 (E:\cdac project\CarRentalBackEnd\target\classes started by sumit in E:\cdac project\CarRentalBackEnd)
+2026-01-22T23:26:42.462+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] c.carRental.CarRentalBackendApplication  : No active profile set, falling back to 1 default profile: "default"
+2026-01-22T23:26:42.939+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-22T23:26:43.029+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 86 ms. Found 7 JPA repository interfaces.
+2026-01-22T23:26:43.242+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-01-22T23:26:43.245+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-22T23:26:43.245+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-01-22T23:26:43.282+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-22T23:26:43.282+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 818 ms
+2026-01-22T23:26:43.403+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-22T23:26:43.406+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-01-22T23:26:43.422+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-22T23:26:43.426+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-01-22T23:26:43.456+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@33dc4c20
+2026-01-22T23:26:43.456+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-01-22T23:26:43.456+05:30  WARN 28632 --- [car_rental_backend] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-22T23:26:43.456+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-22T23:26:43.649+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-22T23:26:43.715+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-22T23:26:44.151+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-01-22T23:26:44.193+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsServiceImpl
+2026-01-22T23:26:44.233+05:30 DEBUG 28632 --- [car_rental_backend] [  restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, CustomJwtFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-01-22T23:26:44.476+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-01-22T23:26:44.495+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-01-22T23:26:44.503+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] c.carRental.CarRentalBackendApplication  : Started CarRentalBackendApplication in 2.067 seconds (process running for 134.442)
+2026-01-22T23:26:44.506+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-01-22T23:26:44.506+05:30  WARN 28632 --- [car_rental_backend] [  restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-01-22T23:26:44.506+05:30  WARN 28632 --- [car_rental_backend] [  restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-01-22T23:27:50.642+05:30  INFO 28632 --- [car_rental_backend] [   File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 28 class path changes (0 additions, 0 deletions, 28 modifications)
+2026-01-22T23:27:50.647+05:30  INFO 28632 --- [car_rental_backend] [       Thread-7] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-22T23:27:50.656+05:30  INFO 28632 --- [car_rental_backend] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-01-22T23:27:50.660+05:30  INFO 28632 --- [car_rental_backend] [       Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-22T23:27:50.660+05:30  INFO 28632 --- [car_rental_backend] [       Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2026-01-22T23:27:50.662+05:30  INFO 28632 --- [car_rental_backend] [       Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.7)
+
+2026-01-22T23:27:50.746+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] c.carRental.CarRentalBackendApplication  : Starting CarRentalBackendApplication using Java 24.0.1 with PID 28632 (E:\cdac project\CarRentalBackEnd\target\classes started by sumit in E:\cdac project\CarRentalBackEnd)
+2026-01-22T23:27:50.746+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] c.carRental.CarRentalBackendApplication  : No active profile set, falling back to 1 default profile: "default"
+2026-01-22T23:27:51.056+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-22T23:27:51.081+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 7 JPA repository interfaces.
+2026-01-22T23:27:51.174+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-01-22T23:27:51.175+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-22T23:27:51.175+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-01-22T23:27:51.196+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-22T23:27:51.196+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 449 ms
+2026-01-22T23:27:51.272+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-22T23:27:51.274+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-01-22T23:27:51.281+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-22T23:27:51.283+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2026-01-22T23:27:51.287+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@9eaf150
+2026-01-22T23:27:51.289+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2026-01-22T23:27:51.290+05:30  WARN 28632 --- [car_rental_backend] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-22T23:27:51.290+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-3)']
+	Database driver: undefined/unknown
+	Database version: 8.0.43
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-22T23:27:51.382+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-22T23:27:51.437+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-22T23:27:51.840+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-01-22T23:27:51.865+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsServiceImpl
+2026-01-22T23:27:51.894+05:30 DEBUG 28632 --- [car_rental_backend] [  restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, CustomJwtFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-01-22T23:27:52.046+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-01-22T23:27:52.061+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-01-22T23:27:52.066+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] c.carRental.CarRentalBackendApplication  : Started CarRentalBackendApplication in 1.343 seconds (process running for 202.006)
+2026-01-22T23:27:52.068+05:30  INFO 28632 --- [car_rental_backend] [  restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-01-22T23:27:52.068+05:30  WARN 28632 --- [car_rental_backend] [  restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-01-22T23:27:52.069+05:30  WARN 28632 --- [car_rental_backend] [  restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  04:30 min
+[INFO] Finished at: 2026-01-22T23:28:58+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.5.7:run (default-cli) on project carRental_backend_secured_jwt: Process terminated with exit code: -1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

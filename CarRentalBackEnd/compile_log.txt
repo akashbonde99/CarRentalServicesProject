@@ -1,0 +1,573 @@
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/C:/Users/sumit/.m2/wrapper/dists/apache-maven-3.9.11/03d7e36a140982eea48e22c1dcac01d8862b2550b2939e09a0809bbc5182a5bc/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------< com.cdac:carRental_backend_secured_jwt >---------------
+[INFO] Building carRental_backend_secured_jwt 0.0.1
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ carRental_backend_secured_jwt ---
+[INFO] Deleting E:\cdac project\CarRentalBackEnd\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ carRental_backend_secured_jwt ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ carRental_backend_secured_jwt ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 60 source files with javac [debug parameters release 21] to target\classes
+[INFO] Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthService.java:[5,25] cannot access com.carRental.dto.UserDto
+  bad source file: E:\cdac project\CarRentalBackEnd\src\main\java\com\carRental\dto\UserDto.java
+    file does not contain class com.carRental.dto.UserDto
+    Please remove or make sure it appears in the correct subdirectory of the sourcepath.
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[11,25] cannot access com.carRental.dto.BookingResponseDTO
+  bad source file: E:\cdac project\CarRentalBackEnd\src\main\java\com\carRental\dto\BookingResponseDTO.java
+    file does not contain class com.carRental.dto.BookingResponseDTO
+    Please remove or make sure it appears in the correct subdirectory of the sourcepath.
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/dto/BookingResponseDTO.java:[16,8] class BookingDto is public, should be declared in a file named BookingDto.java
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/dto/PaymentDTO.java:[17,8] class PaymentDto is public, should be declared in a file named PaymentDto.java
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/dto/UserDto.java:[10,8] class UserDTO is public, should be declared in a file named UserDTO.java
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarService.java:[5,25] cannot find symbol
+  symbol:   class CarDto
+  location: package com.carRental.dto
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarService.java:[8,19] cannot find symbol
+  symbol:   class CarDto
+  location: interface com.carRental.service.CarService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarService.java:[8,5] cannot find symbol
+  symbol:   class CarDto
+  location: interface com.carRental.service.CarService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarService.java:[10,10] cannot find symbol
+  symbol:   class CarDto
+  location: interface com.carRental.service.CarService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarService.java:[12,10] cannot find symbol
+  symbol:   class CarDto
+  location: interface com.carRental.service.CarService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarService.java:[14,5] cannot find symbol
+  symbol:   class CarDto
+  location: interface com.carRental.service.CarService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarService.java:[16,10] cannot find symbol
+  symbol:   class CarDto
+  location: interface com.carRental.service.CarService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarService.java:[18,10] cannot find symbol
+  symbol:   class CarDto
+  location: interface com.carRental.service.CarService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthService.java:[8,5] cannot find symbol
+  symbol:   class UserDto
+  location: interface com.carRental.service.AuthService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/repository/AdminRepository.java:[6,28] cannot find symbol
+  symbol:   class Admin
+  location: package com.carRental.entity
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/repository/AdminRepository.java:[9,56] cannot find symbol
+  symbol: class Admin
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/repository/CustomerRepository.java:[6,28] cannot find symbol
+  symbol:   class Customer
+  location: package com.carRental.entity
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/repository/CustomerRepository.java:[9,59] cannot find symbol
+  symbol: class Customer
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthServiceImpl.java:[27,12] cannot find symbol
+  symbol:   class UserDto
+  location: class com.carRental.service.AuthServiceImpl
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[35,12] cannot find symbol
+  symbol:   class BookingResponseDTO
+  location: class com.carRental.service.BookingServiceImpl
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[76,12] cannot find symbol
+  symbol:   class BookingResponseDTO
+  location: class com.carRental.service.BookingServiceImpl
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[87,17] cannot find symbol
+  symbol:   class BookingResponseDTO
+  location: class com.carRental.service.BookingServiceImpl
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[132,13] cannot find symbol
+  symbol:   class BookingResponseDTO
+  location: class com.carRental.service.BookingServiceImpl
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[34,28] cannot find symbol
+  symbol:   method success(java.lang.String,com.carRental.dto.CarDTO)
+  location: class com.carRental.dto.ApiResponse
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[45,28] cannot find symbol
+  symbol:   method success(java.lang.String,java.util.List<com.carRental.dto.CarDTO>)
+  location: class com.carRental.dto.ApiResponse
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[53,39] cannot find symbol
+  symbol:   method getCarsByStatus(com.carRental.entity.CarStatus)
+  location: variable carService of type com.carRental.service.CarService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[56,28] cannot find symbol
+  symbol:   method success(java.lang.String,java.util.List<com.carRental.dto.CarDTO>)
+  location: class com.carRental.dto.ApiResponse
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[65,44] incompatible types: java.lang.Long cannot be converted to java.lang.Integer
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[68,28] cannot find symbol
+  symbol:   method success(java.lang.String,com.carRental.dto.CarDTO)
+  location: class com.carRental.dto.ApiResponse
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[77,61] incompatible types: com.carRental.entity.FuelType cannot be converted to java.lang.String
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[80,28] cannot find symbol
+  symbol:   method success(java.lang.String,java.util.List<com.carRental.dto.CarDTO>)
+  location: class com.carRental.dto.ApiResponse
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[87,60] incompatible types: com.carRental.entity.CarType cannot be converted to java.lang.String
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[90,28] cannot find symbol
+  symbol:   method success(java.lang.String,java.util.List<com.carRental.dto.CarDTO>)
+  location: class com.carRental.dto.ApiResponse
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/security/CustomJwtFilter.java:[41,29] cannot find symbol
+  symbol:   method isTokenValid(java.lang.String)
+  location: variable jwtUtils of type com.carRental.security.JwtUtils
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/security/CustomJwtFilter.java:[44,43] cannot find symbol
+  symbol:   method extractRole(java.lang.String)
+  location: variable jwtUtils of type com.carRental.security.JwtUtils
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/security/CustomJwtFilter.java:[52,21] cannot find symbol
+  symbol:   variable log
+  location: class com.carRental.security.CustomJwtFilter
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/security/CustomJwtFilter.java:[55,17] cannot find symbol
+  symbol:   variable log
+  location: class com.carRental.security.CustomJwtFilter
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/security/CustomUserDetails.java:[23,83] cannot find symbol
+  symbol:   method getRole()
+  location: variable user of type com.carRental.entity.User
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/security/CustomUserDetails.java:[28,20] cannot find symbol
+  symbol:   method getPassword()
+  location: variable user of type com.carRental.entity.User
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/security/CustomUserDetails.java:[33,20] cannot find symbol
+  symbol:   method getEmail()
+  location: variable user of type com.carRental.entity.User
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/security/CustomUserDetails.java:[57,20] cannot find symbol
+  symbol:   method getId()
+  location: variable user of type com.carRental.entity.User
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthServiceImpl.java:[29,31] cannot find symbol
+  symbol:   method getRole()
+  location: variable registerRequestDTO of type com.carRental.dto.RegisterRequestDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthServiceImpl.java:[29,49] cannot find symbol
+  symbol:   variable CUSTOMER
+  location: class com.carRental.entity.Role
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthServiceImpl.java:[30,76] cannot find symbol
+  symbol:   class Customer
+  location: package com.carRental.entity
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthServiceImpl.java:[31,38] cannot find symbol
+  symbol:   method getRole()
+  location: variable registerRequestDTO of type com.carRental.dto.RegisterRequestDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthServiceImpl.java:[31,56] cannot find symbol
+  symbol:   variable ADMIN
+  location: class com.carRental.entity.Role
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthServiceImpl.java:[32,76] cannot find symbol
+  symbol:   class Admin
+  location: package com.carRental.entity
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthServiceImpl.java:[37,53] cannot find symbol
+  symbol:   method getPassword()
+  location: variable user of type com.carRental.entity.User
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthServiceImpl.java:[39,43] cannot find symbol
+  symbol:   class UserDto
+  location: class com.carRental.service.AuthServiceImpl
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[26,8] com.carRental.service.BookingServiceImpl is not abstract and does not override abstract method cancelBooking(java.lang.Integer) in com.carRental.service.BookingService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[44,59] cannot find symbol
+  symbol:   method getCarId()
+  location: variable bookingRequestDTO of type com.carRental.dto.BookingRequestDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[47,16] cannot find symbol
+  symbol:   method getStatus()
+  location: variable car of type com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[52,34] cannot find symbol
+  symbol:   method getPickupDate()
+  location: variable bookingRequestDTO of type com.carRental.dto.BookingRequestDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[53,34] cannot find symbol
+  symbol:   method getDropDate()
+  location: variable bookingRequestDTO of type com.carRental.dto.BookingRequestDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[55,40] cannot find symbol
+  symbol:   method getPricePerDay()
+  location: variable car of type com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[57,34] cannot find symbol
+  symbol:   method builder()
+  location: class com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[58,46] cannot find symbol
+  symbol:   method getPickupDate()
+  location: variable bookingRequestDTO of type com.carRental.dto.BookingRequestDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[59,44] cannot find symbol
+  symbol:   method getDropDate()
+  location: variable bookingRequestDTO of type com.carRental.dto.BookingRequestDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[66,12] cannot find symbol
+  symbol:   method setStatus(com.carRental.entity.CarStatus)
+  location: variable car of type com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[75,5] method does not override or implement a method from a supertype
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[86,5] method does not override or implement a method from a supertype
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[96,56] cannot find symbol
+  symbol:   method getUserId()
+  location: variable user of type com.carRental.entity.User
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[104,5] method does not override or implement a method from a supertype
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[110,32] cannot find symbol
+  symbol:   method builder()
+  location: class com.carRental.dto.BookingStatusDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[111,35] cannot find symbol
+  symbol:   method getBookingId()
+  location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[112,39] cannot find symbol
+  symbol:   method getBookingStatus()
+  location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[118,5] method does not override or implement a method from a supertype
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[124,16] cannot find symbol
+  symbol:   method setBookingStatus(com.carRental.entity.BookingStatus)
+  location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[125,16] cannot find symbol
+  symbol:   method getCar()
+  location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[134,16] cannot find symbol
+  symbol:   variable BookingResponseDTO
+  location: class com.carRental.service.BookingServiceImpl
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[135,35] cannot find symbol
+  symbol:   method getBookingId()
+  location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[136,31] cannot find symbol
+  symbol:   method getCar()
+  location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[137,36] cannot find symbol
+  symbol:   method getPickupDate()
+  location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[138,34] cannot find symbol
+  symbol:   method getDropDate()
+  location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[139,39] cannot find symbol
+  symbol:   method getBookingStatus()
+  location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[140,37] cannot find symbol
+  symbol:   method getTotalAmount()
+  location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[19,8] com.carRental.service.CarServiceImpl is not abstract and does not override abstract method deleteCar(java.lang.Integer) in com.carRental.service.CarService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[28,22] cannot find symbol
+  symbol:   method builder()
+  location: class com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[29,30] cannot find symbol
+  symbol:   method getBrand()
+  location: variable carDTO of type com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[30,30] cannot find symbol
+  symbol:   method getModel()
+  location: variable carDTO of type com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[31,43] cannot find symbol
+  symbol:   method getRegistrationNumber()
+  location: variable carDTO of type com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[32,29] cannot find symbol
+  symbol:   method getCity()
+  location: variable carDTO of type com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[33,38] cannot find symbol
+  symbol:   method getPickupAddress()
+  location: variable carDTO of type com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[34,36] cannot find symbol
+  symbol:   method getDescription()
+  location: variable carDTO of type com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[35,36] cannot find symbol
+  symbol:   method getPricePerDay()
+  location: variable carDTO of type com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[36,33] cannot find symbol
+  symbol:   method getFuelType()
+  location: variable carDTO of type com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[37,32] cannot find symbol
+  symbol:   method getCarType()
+  location: variable carDTO of type com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[48,5] method does not override or implement a method from a supertype
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[70,5] method does not override or implement a method from a supertype
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[81,5] method does not override or implement a method from a supertype
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[92,5] method does not override or implement a method from a supertype
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[101,5] method does not override or implement a method from a supertype
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[114,22] cannot find symbol
+  symbol:   method builder()
+  location: class com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[115,27] cannot find symbol
+  symbol:   method getBrand()
+  location: variable car of type com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[116,27] cannot find symbol
+  symbol:   method getModel()
+  location: variable car of type com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[117,40] cannot find symbol
+  symbol:   method getRegistrationNumber()
+  location: variable car of type com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[118,26] cannot find symbol
+  symbol:   method getCity()
+  location: variable car of type com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[119,35] cannot find symbol
+  symbol:   method getPickupAddress()
+  location: variable car of type com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[120,33] cannot find symbol
+  symbol:   method getDescription()
+  location: variable car of type com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[121,33] cannot find symbol
+  symbol:   method getPricePerDay()
+  location: variable car of type com.carRental.entity.Car
+[INFO] 100 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.207 s
+[INFO] Finished at: 2026-01-23T01:06:37+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.1:compile (default-compile) on project carRental_backend_secured_jwt: Compilation failure: Compilation failure: 
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthService.java:[5,25] cannot access com.carRental.dto.UserDto
+[ERROR]   bad source file: E:\cdac project\CarRentalBackEnd\src\main\java\com\carRental\dto\UserDto.java
+[ERROR]     file does not contain class com.carRental.dto.UserDto
+[ERROR]     Please remove or make sure it appears in the correct subdirectory of the sourcepath.
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[11,25] cannot access com.carRental.dto.BookingResponseDTO
+[ERROR]   bad source file: E:\cdac project\CarRentalBackEnd\src\main\java\com\carRental\dto\BookingResponseDTO.java
+[ERROR]     file does not contain class com.carRental.dto.BookingResponseDTO
+[ERROR]     Please remove or make sure it appears in the correct subdirectory of the sourcepath.
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/dto/BookingResponseDTO.java:[16,8] class BookingDto is public, should be declared in a file named BookingDto.java
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/dto/PaymentDTO.java:[17,8] class PaymentDto is public, should be declared in a file named PaymentDto.java
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/dto/UserDto.java:[10,8] class UserDTO is public, should be declared in a file named UserDTO.java
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarService.java:[5,25] cannot find symbol
+[ERROR]   symbol:   class CarDto
+[ERROR]   location: package com.carRental.dto
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarService.java:[8,19] cannot find symbol
+[ERROR]   symbol:   class CarDto
+[ERROR]   location: interface com.carRental.service.CarService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarService.java:[8,5] cannot find symbol
+[ERROR]   symbol:   class CarDto
+[ERROR]   location: interface com.carRental.service.CarService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarService.java:[10,10] cannot find symbol
+[ERROR]   symbol:   class CarDto
+[ERROR]   location: interface com.carRental.service.CarService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarService.java:[12,10] cannot find symbol
+[ERROR]   symbol:   class CarDto
+[ERROR]   location: interface com.carRental.service.CarService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarService.java:[14,5] cannot find symbol
+[ERROR]   symbol:   class CarDto
+[ERROR]   location: interface com.carRental.service.CarService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarService.java:[16,10] cannot find symbol
+[ERROR]   symbol:   class CarDto
+[ERROR]   location: interface com.carRental.service.CarService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarService.java:[18,10] cannot find symbol
+[ERROR]   symbol:   class CarDto
+[ERROR]   location: interface com.carRental.service.CarService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthService.java:[8,5] cannot find symbol
+[ERROR]   symbol:   class UserDto
+[ERROR]   location: interface com.carRental.service.AuthService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/repository/AdminRepository.java:[6,28] cannot find symbol
+[ERROR]   symbol:   class Admin
+[ERROR]   location: package com.carRental.entity
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/repository/AdminRepository.java:[9,56] cannot find symbol
+[ERROR]   symbol: class Admin
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/repository/CustomerRepository.java:[6,28] cannot find symbol
+[ERROR]   symbol:   class Customer
+[ERROR]   location: package com.carRental.entity
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/repository/CustomerRepository.java:[9,59] cannot find symbol
+[ERROR]   symbol: class Customer
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthServiceImpl.java:[27,12] cannot find symbol
+[ERROR]   symbol:   class UserDto
+[ERROR]   location: class com.carRental.service.AuthServiceImpl
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[35,12] cannot find symbol
+[ERROR]   symbol:   class BookingResponseDTO
+[ERROR]   location: class com.carRental.service.BookingServiceImpl
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[76,12] cannot find symbol
+[ERROR]   symbol:   class BookingResponseDTO
+[ERROR]   location: class com.carRental.service.BookingServiceImpl
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[87,17] cannot find symbol
+[ERROR]   symbol:   class BookingResponseDTO
+[ERROR]   location: class com.carRental.service.BookingServiceImpl
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[132,13] cannot find symbol
+[ERROR]   symbol:   class BookingResponseDTO
+[ERROR]   location: class com.carRental.service.BookingServiceImpl
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[34,28] cannot find symbol
+[ERROR]   symbol:   method success(java.lang.String,com.carRental.dto.CarDTO)
+[ERROR]   location: class com.carRental.dto.ApiResponse
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[45,28] cannot find symbol
+[ERROR]   symbol:   method success(java.lang.String,java.util.List<com.carRental.dto.CarDTO>)
+[ERROR]   location: class com.carRental.dto.ApiResponse
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[53,39] cannot find symbol
+[ERROR]   symbol:   method getCarsByStatus(com.carRental.entity.CarStatus)
+[ERROR]   location: variable carService of type com.carRental.service.CarService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[56,28] cannot find symbol
+[ERROR]   symbol:   method success(java.lang.String,java.util.List<com.carRental.dto.CarDTO>)
+[ERROR]   location: class com.carRental.dto.ApiResponse
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[65,44] incompatible types: java.lang.Long cannot be converted to java.lang.Integer
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[68,28] cannot find symbol
+[ERROR]   symbol:   method success(java.lang.String,com.carRental.dto.CarDTO)
+[ERROR]   location: class com.carRental.dto.ApiResponse
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[77,61] incompatible types: com.carRental.entity.FuelType cannot be converted to java.lang.String
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[80,28] cannot find symbol
+[ERROR]   symbol:   method success(java.lang.String,java.util.List<com.carRental.dto.CarDTO>)
+[ERROR]   location: class com.carRental.dto.ApiResponse
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[87,60] incompatible types: com.carRental.entity.CarType cannot be converted to java.lang.String
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/controller/CarController.java:[90,28] cannot find symbol
+[ERROR]   symbol:   method success(java.lang.String,java.util.List<com.carRental.dto.CarDTO>)
+[ERROR]   location: class com.carRental.dto.ApiResponse
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/security/CustomJwtFilter.java:[41,29] cannot find symbol
+[ERROR]   symbol:   method isTokenValid(java.lang.String)
+[ERROR]   location: variable jwtUtils of type com.carRental.security.JwtUtils
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/security/CustomJwtFilter.java:[44,43] cannot find symbol
+[ERROR]   symbol:   method extractRole(java.lang.String)
+[ERROR]   location: variable jwtUtils of type com.carRental.security.JwtUtils
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/security/CustomJwtFilter.java:[52,21] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.carRental.security.CustomJwtFilter
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/security/CustomJwtFilter.java:[55,17] cannot find symbol
+[ERROR]   symbol:   variable log
+[ERROR]   location: class com.carRental.security.CustomJwtFilter
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/security/CustomUserDetails.java:[23,83] cannot find symbol
+[ERROR]   symbol:   method getRole()
+[ERROR]   location: variable user of type com.carRental.entity.User
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/security/CustomUserDetails.java:[28,20] cannot find symbol
+[ERROR]   symbol:   method getPassword()
+[ERROR]   location: variable user of type com.carRental.entity.User
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/security/CustomUserDetails.java:[33,20] cannot find symbol
+[ERROR]   symbol:   method getEmail()
+[ERROR]   location: variable user of type com.carRental.entity.User
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/security/CustomUserDetails.java:[57,20] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable user of type com.carRental.entity.User
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthServiceImpl.java:[29,31] cannot find symbol
+[ERROR]   symbol:   method getRole()
+[ERROR]   location: variable registerRequestDTO of type com.carRental.dto.RegisterRequestDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthServiceImpl.java:[29,49] cannot find symbol
+[ERROR]   symbol:   variable CUSTOMER
+[ERROR]   location: class com.carRental.entity.Role
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthServiceImpl.java:[30,76] cannot find symbol
+[ERROR]   symbol:   class Customer
+[ERROR]   location: package com.carRental.entity
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthServiceImpl.java:[31,38] cannot find symbol
+[ERROR]   symbol:   method getRole()
+[ERROR]   location: variable registerRequestDTO of type com.carRental.dto.RegisterRequestDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthServiceImpl.java:[31,56] cannot find symbol
+[ERROR]   symbol:   variable ADMIN
+[ERROR]   location: class com.carRental.entity.Role
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthServiceImpl.java:[32,76] cannot find symbol
+[ERROR]   symbol:   class Admin
+[ERROR]   location: package com.carRental.entity
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthServiceImpl.java:[37,53] cannot find symbol
+[ERROR]   symbol:   method getPassword()
+[ERROR]   location: variable user of type com.carRental.entity.User
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/AuthServiceImpl.java:[39,43] cannot find symbol
+[ERROR]   symbol:   class UserDto
+[ERROR]   location: class com.carRental.service.AuthServiceImpl
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[26,8] com.carRental.service.BookingServiceImpl is not abstract and does not override abstract method cancelBooking(java.lang.Integer) in com.carRental.service.BookingService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[44,59] cannot find symbol
+[ERROR]   symbol:   method getCarId()
+[ERROR]   location: variable bookingRequestDTO of type com.carRental.dto.BookingRequestDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[47,16] cannot find symbol
+[ERROR]   symbol:   method getStatus()
+[ERROR]   location: variable car of type com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[52,34] cannot find symbol
+[ERROR]   symbol:   method getPickupDate()
+[ERROR]   location: variable bookingRequestDTO of type com.carRental.dto.BookingRequestDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[53,34] cannot find symbol
+[ERROR]   symbol:   method getDropDate()
+[ERROR]   location: variable bookingRequestDTO of type com.carRental.dto.BookingRequestDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[55,40] cannot find symbol
+[ERROR]   symbol:   method getPricePerDay()
+[ERROR]   location: variable car of type com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[57,34] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[58,46] cannot find symbol
+[ERROR]   symbol:   method getPickupDate()
+[ERROR]   location: variable bookingRequestDTO of type com.carRental.dto.BookingRequestDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[59,44] cannot find symbol
+[ERROR]   symbol:   method getDropDate()
+[ERROR]   location: variable bookingRequestDTO of type com.carRental.dto.BookingRequestDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[66,12] cannot find symbol
+[ERROR]   symbol:   method setStatus(com.carRental.entity.CarStatus)
+[ERROR]   location: variable car of type com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[75,5] method does not override or implement a method from a supertype
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[86,5] method does not override or implement a method from a supertype
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[96,56] cannot find symbol
+[ERROR]   symbol:   method getUserId()
+[ERROR]   location: variable user of type com.carRental.entity.User
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[104,5] method does not override or implement a method from a supertype
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[110,32] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.carRental.dto.BookingStatusDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[111,35] cannot find symbol
+[ERROR]   symbol:   method getBookingId()
+[ERROR]   location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[112,39] cannot find symbol
+[ERROR]   symbol:   method getBookingStatus()
+[ERROR]   location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[118,5] method does not override or implement a method from a supertype
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[124,16] cannot find symbol
+[ERROR]   symbol:   method setBookingStatus(com.carRental.entity.BookingStatus)
+[ERROR]   location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[125,16] cannot find symbol
+[ERROR]   symbol:   method getCar()
+[ERROR]   location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[134,16] cannot find symbol
+[ERROR]   symbol:   variable BookingResponseDTO
+[ERROR]   location: class com.carRental.service.BookingServiceImpl
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[135,35] cannot find symbol
+[ERROR]   symbol:   method getBookingId()
+[ERROR]   location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[136,31] cannot find symbol
+[ERROR]   symbol:   method getCar()
+[ERROR]   location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[137,36] cannot find symbol
+[ERROR]   symbol:   method getPickupDate()
+[ERROR]   location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[138,34] cannot find symbol
+[ERROR]   symbol:   method getDropDate()
+[ERROR]   location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[139,39] cannot find symbol
+[ERROR]   symbol:   method getBookingStatus()
+[ERROR]   location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/BookingServiceImpl.java:[140,37] cannot find symbol
+[ERROR]   symbol:   method getTotalAmount()
+[ERROR]   location: variable booking of type com.carRental.entity.Booking
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[19,8] com.carRental.service.CarServiceImpl is not abstract and does not override abstract method deleteCar(java.lang.Integer) in com.carRental.service.CarService
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[28,22] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[29,30] cannot find symbol
+[ERROR]   symbol:   method getBrand()
+[ERROR]   location: variable carDTO of type com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[30,30] cannot find symbol
+[ERROR]   symbol:   method getModel()
+[ERROR]   location: variable carDTO of type com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[31,43] cannot find symbol
+[ERROR]   symbol:   method getRegistrationNumber()
+[ERROR]   location: variable carDTO of type com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[32,29] cannot find symbol
+[ERROR]   symbol:   method getCity()
+[ERROR]   location: variable carDTO of type com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[33,38] cannot find symbol
+[ERROR]   symbol:   method getPickupAddress()
+[ERROR]   location: variable carDTO of type com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[34,36] cannot find symbol
+[ERROR]   symbol:   method getDescription()
+[ERROR]   location: variable carDTO of type com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[35,36] cannot find symbol
+[ERROR]   symbol:   method getPricePerDay()
+[ERROR]   location: variable carDTO of type com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[36,33] cannot find symbol
+[ERROR]   symbol:   method getFuelType()
+[ERROR]   location: variable carDTO of type com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[37,32] cannot find symbol
+[ERROR]   symbol:   method getCarType()
+[ERROR]   location: variable carDTO of type com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[48,5] method does not override or implement a method from a supertype
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[70,5] method does not override or implement a method from a supertype
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[81,5] method does not override or implement a method from a supertype
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[92,5] method does not override or implement a method from a supertype
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[101,5] method does not override or implement a method from a supertype
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[114,22] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.carRental.dto.CarDTO
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[115,27] cannot find symbol
+[ERROR]   symbol:   method getBrand()
+[ERROR]   location: variable car of type com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[116,27] cannot find symbol
+[ERROR]   symbol:   method getModel()
+[ERROR]   location: variable car of type com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[117,40] cannot find symbol
+[ERROR]   symbol:   method getRegistrationNumber()
+[ERROR]   location: variable car of type com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[118,26] cannot find symbol
+[ERROR]   symbol:   method getCity()
+[ERROR]   location: variable car of type com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[119,35] cannot find symbol
+[ERROR]   symbol:   method getPickupAddress()
+[ERROR]   location: variable car of type com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[120,33] cannot find symbol
+[ERROR]   symbol:   method getDescription()
+[ERROR]   location: variable car of type com.carRental.entity.Car
+[ERROR] /E:/cdac project/CarRentalBackEnd/src/main/java/com/carRental/service/CarServiceImpl.java:[121,33] cannot find symbol
+[ERROR]   symbol:   method getPricePerDay()
+[ERROR]   location: variable car of type com.carRental.entity.Car
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
