@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.carRental.entity.Role;
 import com.carRental.entity.User;
 
 @SuppressWarnings("serial")
@@ -50,6 +51,11 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
+        // Customers are always enabled.
+        // Admins must be explicitly approved (active = true) before they can log in.
+        if (user.getRole() == Role.ADMIN) {
+            return user.isActive();
+        }
         return true;
     }
 

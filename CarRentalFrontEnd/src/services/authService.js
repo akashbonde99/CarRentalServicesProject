@@ -38,3 +38,29 @@ export const registerUser = async (userData) => {
         throw error.response?.data || error.message;
     }
 };
+
+/**
+ * Fetch all admin users whose accounts are still pending approval.
+ */
+export const getPendingAdmins = async () => {
+    try {
+        const response = await api.get('/admin/pending-admins');
+        return response.data;
+    } catch (error) {
+        console.error('AuthService.getPendingAdmins error:', error);
+        throw error.response?.data || error.message;
+    }
+};
+
+/**
+ * Approve a specific admin by ID.
+ */
+export const approveAdmin = async (adminId) => {
+    try {
+        const response = await api.post(`/admin/approve-admin/${adminId}`);
+        return response.data;
+    } catch (error) {
+        console.error('AuthService.approveAdmin error:', error);
+        throw error.response?.data || error.message;
+    }
+};

@@ -82,7 +82,11 @@ const BookCar = () => {
                 // Redirecting to payment checkout
                 navigate(`/checkout/${data.data.bookingId}`);
             } else {
-                setError(data.message || "Booking failed.");
+                if (data.message?.includes('not available for booking')) {
+                    setError('This car is not available for booking. Please choose a different car or date.');
+                } else {
+                    setError(data.message || "Booking failed.");
+                }
             }
         } catch (err) {
             setError("An error occurred while booking.");

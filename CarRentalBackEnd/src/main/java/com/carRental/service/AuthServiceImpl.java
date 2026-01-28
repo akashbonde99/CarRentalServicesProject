@@ -40,6 +40,15 @@ public class AuthServiceImpl implements AuthService {
             user = modelMapper.map(registerRequestDTO, User.class);
         }
 
+        // Set account activation based on role.
+        // - Customers: active immediately.
+        // - Admins: start as inactive and require approval by an existing admin.
+        if (user.getRole() == Role.ADMIN) {
+            user.setActive(false);
+        } else {
+            user.setActive(true);
+        }
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedUser = userRepository.save(user);
         return modelMapper.map(savedUser, UserDTO.class);

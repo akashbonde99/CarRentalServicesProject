@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { getAllCars, addCar, deleteCar } from '../services/carService';
 import { getAllBookings, updateBookingStatus } from '../services/bookingService';
+import { getPendingAdmins, approveAdmin } from '../services/authService';
 import { FaPlus, FaTrash, FaCheck, FaTimes } from 'react-icons/fa';
 
 const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('cars');
     const [cars, setCars] = useState([]);
     const [bookings, setBookings] = useState([]);
+    const [pendingAdmins, setPendingAdmins] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const [showAddModal, setShowAddModal] = useState(false);
@@ -18,7 +20,8 @@ const AdminDashboard = () => {
 
     useEffect(() => {
         if (activeTab === 'cars') fetchCars();
-        else fetchBookings();
+        else if (activeTab === 'bookings') fetchBookings();
+        else if (activeTab === 'admins') fetchPendingAdmins();
     }, [activeTab]);
 
     const fetchCars = async () => {
@@ -35,6 +38,15 @@ const AdminDashboard = () => {
         try {
             const data = await getAllBookings();
             if (data.success) setBookings(data.data || []);
+        } catch (err) { console.error(err); }
+        finally { setLoading(false); }
+    };
+
+    const fetchPendingAdmins = async () => {
+        setLoading(true);
+        try {
+            const data = await getPendingAdmins();
+            if (data.success) setPendingAdmins(data.data || []);
         } catch (err) { console.error(err); }
         finally { setLoading(false); }
     };
@@ -86,6 +98,21 @@ const AdminDashboard = () => {
         } catch (err) { alert("Failed to update status."); }
     };
 
+    const handleApproveAdmin = async (adminId) => {
+        if (!window.confirm("Approve this admin? They will gain full admin access.")) return;
+        try {
+            const res = await approveAdmin(adminId);
+            if (res.success) {
+                // Refresh pending list
+                fetchPendingAdmins();
+            } else {
+                alert(res.message || "Failed to approve admin.");
+            }
+        } catch (err) {
+            alert("Failed to approve admin.");
+        }
+    };
+
     return (
         <div className="bg-gray-100 min-h-screen p-8">
             <div className="max-w-6xl mx-auto">
@@ -112,6 +139,12 @@ const AdminDashboard = () => {
                         onClick={() => setActiveTab('bookings')}
                     >
                         Customer Bookings
+                    </button>
+                    <button
+                        className={`pb-4 px-2 font-bold text-sm transition-all ${activeTab === 'admins' ? 'border-b-2 border-indigo-600 text-indigo-600' : 'text-gray-500 hover:text-gray-700'}`}
+                        onClick={() => setActiveTab('admins')}
+                    >
+                        Admin Requests
                     </button>
                 </div>
 
@@ -198,6 +231,47 @@ const AdminDashboard = () => {
                                                     </button>
                                                 </div>
                                             )}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
+
+                {activeTab === 'admins' && (
+                    <div className="bg-white rounded-lg shadow-md border overflow-hidden">
+                        <table className="w-full text-left">
+                            <thead className="bg-gray-50 border-b">
+                                <tr className="text-gray-700 uppercase text-xs font-bold">
+                                    <th className="p-4 leading-4">ID</th>
+                                    <th className="p-4 leading-4">Name</th>
+                                    <th className="p-4 leading-4">Email</th>
+                                    <th className="p-4 leading-4">Driving Licence</th>
+                                    <th className="p-4 leading-4 text-right">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y text-sm">
+                                {pendingAdmins.length === 0 && (
+                                    <tr>
+                                        <td className="p-6 text-center text-gray-500 text-sm" colSpan={5}>
+                                            No pending admin requests.
+                                        </td>
+                                    </tr>
+                                )}
+                                {pendingAdmins.map((admin) => (
+                                    <tr key={admin.userId} className="hover:bg-gray-50">
+                                        <td className="p-4 font-medium">#{admin.userId}</td>
+                                        <td className="p-4 font-semibold">{admin.name}</td>
+                                        <td className="p-4 text-gray-600">{admin.email}</td>
+                                        <td className="p-4 text-gray-600">{admin.drivingLicence || '—'}</td>
+                                        <td className="p-4 text-right">
+                                            <button
+                                                onClick={() => handleApproveAdmin(admin.userId)}
+                                                className="inline-flex items-center px-3 py-1.5 bg-green-600 text-white text-xs font-bold rounded hover:bg-green-700 transition-all"
+                                            >
+                                                <FaCheck className="mr-1" /> Approve
+                                            </button>
                                         </td>
                                     </tr>
                                 ))}

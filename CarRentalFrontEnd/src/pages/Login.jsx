@@ -19,7 +19,14 @@ const Login = () => {
                 login(data.data.user || data.data, data.data.token);
                 navigate('/');
             } else {
-                setError(data.message || 'Login failed');
+                // Prefer friendly, specific messages returned by backend
+                if (data.message?.includes('not active')) {
+                    setError('Your admin account is pending approval. Please wait for an existing admin to approve you.');
+                } else if (data.message?.includes('could not find an account')) {
+                    setError('We could not find an account with this email.');
+                } else {
+                    setError(data.message || 'Login failed');
+                }
             }
         } catch (err) {
             setError('Could not connect to the authentication server.');

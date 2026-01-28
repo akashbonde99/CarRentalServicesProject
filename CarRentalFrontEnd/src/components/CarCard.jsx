@@ -19,8 +19,15 @@ const CarCard = ({ car }) => {
                     alt={`${car.brand} ${car.model}`}
                     className="w-full h-full object-cover"
                 />
-                <div className="absolute top-2 right-2 bg-indigo-600 text-white text-[10px] px-2 py-1 rounded font-bold uppercase">
-                    {car.carType}
+                <div className="absolute top-2 right-2 flex flex-col items-end space-y-1">
+                    <div className="bg-indigo-600 text-white text-[10px] px-2 py-1 rounded font-bold uppercase">
+                        {car.carType}
+                    </div>
+                    {car.status === 'BOOKED' && (
+                        <div className="bg-red-600 text-white text-[10px] px-2 py-1 rounded font-bold uppercase shadow-sm">
+                            Booked
+                        </div>
+                    )}
                 </div>
             </div>
 
@@ -39,12 +46,22 @@ const CarCard = ({ car }) => {
                         <span className="text-xl font-bold text-indigo-600">₹{car.pricePerDay?.toLocaleString()}</span>
                         <span className="text-gray-400 text-[10px] ml-1">/ day</span>
                     </div>
-                    <Link
-                        to={user ? `/book/${car.carId}` : "/login"}
-                        className="bg-indigo-600 text-white px-4 py-2 rounded text-sm font-semibold hover:bg-indigo-700 transition-colors"
-                    >
-                        Rent Now
-                    </Link>
+                    {car.status === 'BOOKED' ? (
+                        <button
+                            type="button"
+                            disabled
+                            className="bg-gray-300 text-gray-600 px-4 py-2 rounded text-xs font-semibold cursor-not-allowed"
+                        >
+                            Currently Booked
+                        </button>
+                    ) : (
+                        <Link
+                            to={user ? `/book/${car.carId}` : "/login"}
+                            className="bg-indigo-600 text-white px-4 py-2 rounded text-sm font-semibold hover:bg-indigo-700 transition-colors"
+                        >
+                            Rent Now
+                        </Link>
+                    )}
                 </div>
             </div>
         </div>

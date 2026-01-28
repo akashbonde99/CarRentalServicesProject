@@ -38,4 +38,14 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Booking> bookings;
+
+    /**
+     * Indicates whether this user account is active/enabled.
+     * For normal customers this is always true.
+     * For admins, new registrations start as inactive and must be
+     * approved by an existing admin via the admin dashboard.
+     */
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean active = true;
 }
