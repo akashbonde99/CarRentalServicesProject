@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getCarImage } from '../services/carService';
-import { FaGasPump, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaGasPump, FaMapMarkerAlt, FaUsers } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 
 const CarCard = ({ car }) => {
@@ -23,11 +23,11 @@ const CarCard = ({ car }) => {
                     <div className="bg-indigo-600 text-white text-[10px] px-2 py-1 rounded font-bold uppercase">
                         {car.carType}
                     </div>
-                    {car.status === 'BOOKED' && (
+                    {/* {car.status === 'BOOKED' && (
                         <div className="bg-red-600 text-white text-[10px] px-2 py-1 rounded font-bold uppercase shadow-sm">
                             Booked
                         </div>
-                    )}
+                    )} */}
                 </div>
             </div>
 
@@ -39,6 +39,7 @@ const CarCard = ({ car }) => {
                 <div className="flex items-center text-gray-500 text-xs space-x-4 mb-4">
                     <span className="flex items-center"><FaGasPump className="mr-1 text-indigo-500" /> {car.fuelType}</span>
                     <span className="flex items-center"><FaMapMarkerAlt className="mr-1 text-indigo-500" /> {car.city}</span>
+                    <span className="flex items-center"><FaUsers className="mr-1 text-indigo-500" /> {car.seatingCapacity} Seats</span>
                 </div>
 
                 <div className="mt-auto flex justify-between items-center pt-4 border-t border-gray-100">
@@ -46,22 +47,14 @@ const CarCard = ({ car }) => {
                         <span className="text-xl font-bold text-indigo-600">₹{car.pricePerDay?.toLocaleString()}</span>
                         <span className="text-gray-400 text-[10px] ml-1">/ day</span>
                     </div>
-                    {car.status === 'BOOKED' ? (
-                        <button
-                            type="button"
-                            disabled
-                            className="bg-gray-300 text-gray-600 px-4 py-2 rounded text-xs font-semibold cursor-not-allowed"
-                        >
-                            Currently Booked
-                        </button>
-                    ) : (
-                        <Link
-                            to={user ? `/book/${car.carId}` : "/login"}
-                            className="bg-indigo-600 text-white px-4 py-2 rounded text-sm font-semibold hover:bg-indigo-700 transition-colors"
-                        >
-                            Rent Now
-                        </Link>
-                    )}
+                    {/* Always show rent button, availability is checked at booking time or search */}
+                    <Link
+                        to={user ? `/book/${car.carId}` : "/login"}
+                        state={user ? car.bookingDetails : null}
+                        className="bg-indigo-600 text-white px-4 py-2 rounded text-sm font-semibold hover:bg-indigo-700 transition-colors"
+                    >
+                        Rent Now
+                    </Link>
                 </div>
             </div>
         </div>

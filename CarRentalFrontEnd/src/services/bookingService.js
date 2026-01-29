@@ -44,3 +44,12 @@ export const updateBookingStatus = async (bookingId, status) => {
         throw error.response?.data || error.message;
     }
 };
+
+export const getBookingById = async (bookingId) => {
+    try {
+        const response = await api.get(`/bookings/${bookingId}`);
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || error.message;
+    }
+};

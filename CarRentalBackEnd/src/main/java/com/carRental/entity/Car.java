@@ -47,6 +47,9 @@ public class Car {
     @Column(nullable = false)
     private Double pricePerDay;
 
+    @Column(nullable = false)
+    private Integer seatingCapacity;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private FuelType fuelType;

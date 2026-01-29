@@ -3,6 +3,7 @@ package com.carRental.dto;
 import java.time.LocalDate;
 
 import com.carRental.entity.BookingStatus;
+import com.carRental.entity.PaymentStatus;
 import lombok.*;
 
 @Data
@@ -18,5 +19,6 @@ public class BookingResponseDTO {
     private LocalDate pickupDate;
     private LocalDate dropDate;
     private BookingStatus bookingStatus;
+    private PaymentStatus paymentStatus;
     private Double totalAmount;
 }

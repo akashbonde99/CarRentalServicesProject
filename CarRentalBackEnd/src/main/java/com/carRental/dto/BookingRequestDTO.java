@@ -12,4 +12,5 @@ public class BookingRequestDTO {
     private Long carId;
     private LocalDate pickupDate;
     private LocalDate dropDate;
+    private String pickupCity;
 }

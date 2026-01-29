@@ -52,7 +52,7 @@ const MyBookings = () => {
                                 <div className="flex items-center space-x-3 mb-2">
                                     <h3 className="text-xl font-bold text-gray-800">Booking #{booking.bookingId}</h3>
                                     <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider ${booking.bookingStatus === 'CONFIRMED' ? 'bg-green-100 text-green-700' :
-                                            booking.bookingStatus === 'PENDING' ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'
+                                        booking.bookingStatus === 'PENDING' ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'
                                         }`}>
                                         {booking.bookingStatus}
                                     </span>
@@ -61,11 +61,24 @@ const MyBookings = () => {
                                     <p><strong>Car:</strong> {booking.car?.brand} {booking.car?.model}</p>
                                     <p><strong>Total:</strong> ₹{booking.totalAmount?.toLocaleString()}</p>
                                     <p><strong>Dates:</strong> {booking.pickupDate} to {booking.dropDate}</p>
+                                    <p><strong>Payment:</strong>
+                                        <span className={`ml-2 font-bold ${booking.paymentStatus === 'SUCCESS' ? 'text-green-600' : 'text-orange-500'}`}>
+                                            {booking.paymentStatus || 'PENDING'}
+                                        </span>
+                                    </p>
                                 </div>
                             </div>
 
                             <div className="mt-4 md:mt-0 flex space-x-3">
-                                {booking.bookingStatus === 'PENDING' && (
+                                {booking.bookingStatus === 'CONFIRMED' && booking.paymentStatus !== 'SUCCESS' && (
+                                    <Link
+                                        to={`/checkout/${booking.bookingId}`}
+                                        className="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-700 transition-colors shadow-sm"
+                                    >
+                                        Pay Now
+                                    </Link>
+                                )}
+                                {['PENDING', 'CONFIRMED'].includes(booking.bookingStatus) && (
                                     <button
                                         onClick={() => handleCancel(booking.bookingId)}
                                         className="text-red-600 hover:text-red-800 font-semibold text-sm px-4 py-2 border border-red-200 rounded-md bg-red-50 hover:bg-red-100 transition-colors"
@@ -73,7 +86,7 @@ const MyBookings = () => {
                                         Cancel
                                     </button>
                                 )}
-                                <button className="bg-gray-100 px-4 py-2 rounded-md text-sm font-semibold hover:bg-gray-200 transition-colors">Details</button>
+                                <Link to={`/booking/${booking.bookingId}`} className="bg-gray-100 px-4 py-2 rounded-md text-sm font-semibold hover:bg-gray-200 transition-colors">Details</Link>
                             </div>
                         </div>
                     ))}

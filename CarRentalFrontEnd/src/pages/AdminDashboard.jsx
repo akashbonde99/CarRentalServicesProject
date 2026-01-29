@@ -10,11 +10,12 @@ const AdminDashboard = () => {
     const [bookings, setBookings] = useState([]);
     const [pendingAdmins, setPendingAdmins] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [viewLicense, setViewLicense] = useState(null);
 
     const [showAddModal, setShowAddModal] = useState(false);
     const [carForm, setCarForm] = useState({
         brand: '', model: '', registrationNumber: '', city: '',
-        pickupAddress: '', description: '', pricePerDay: '',
+        pickupAddress: '', description: '', pricePerDay: '', seatingCapacity: '',
         fuelType: 'PETROL', carType: 'SEDAN', image: null
     });
 
@@ -193,7 +194,9 @@ const AdminDashboard = () => {
                                     <th className="p-4 leading-4">Car</th>
                                     <th className="p-4 leading-4">Dates</th>
                                     <th className="p-4 leading-4">Total</th>
+                                    <th className="p-4 leading-4">Payment</th>
                                     <th className="p-4 leading-4">Status</th>
+                                    <th className="p-4 leading-4">License</th>
                                     <th className="p-4 leading-4">Action</th>
                                 </tr>
                             </thead>
@@ -206,11 +209,30 @@ const AdminDashboard = () => {
                                         <td className="p-4 text-gray-500">{booking.pickupDate} - {booking.dropDate}</td>
                                         <td className="p-4 font-bold">₹{booking.totalAmount?.toLocaleString()}</td>
                                         <td className="p-4">
+                                            <span className={`text-[10px] font-bold uppercase ${booking.paymentStatus === 'SUCCESS' ? 'text-green-600' : 'text-orange-500'}`}>
+                                                {booking.paymentStatus || 'PENDING'}
+                                            </span>
+                                        </td>
+                                        <td className="p-4">
                                             <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase ${booking.bookingStatus === 'CONFIRMED' ? 'bg-green-100 text-green-700' :
-                                                    booking.bookingStatus === 'REJECTED' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'
+                                                booking.bookingStatus === 'REJECTED' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'
                                                 }`}>
                                                 {booking.bookingStatus}
                                             </span>
+                                        </td>
+                                        <td className="p-4">
+                                            <button
+                                                onClick={() => {
+                                                    if (booking.user?.drivingLicenceImage) {
+                                                        setViewLicense(booking.user.drivingLicenceImage);
+                                                    } else {
+                                                        alert("No license image uploaded for this user.");
+                                                    }
+                                                }}
+                                                className="text-indigo-600 hover:text-indigo-900 underline text-xs"
+                                            >
+                                                View DL
+                                            </button>
                                         </td>
                                         <td className="p-4 text-right">
                                             {booking.bookingStatus === 'PENDING' && (
@@ -327,6 +349,10 @@ const AdminDashboard = () => {
                                     <option value="HATCHBACK">Hatchback</option>
                                 </select>
                             </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Seating Capacity</label>
+                                <input name="seatingCapacity" type="number" placeholder="5" onChange={handleCarFormChange} className="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:ring-indigo-500" required />
+                            </div>
                             <div className="md:col-span-2">
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
                                 <textarea name="description" placeholder="Brief description..." onChange={handleCarFormChange} className="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:ring-indigo-500" rows="3"></textarea>
@@ -340,6 +366,17 @@ const AdminDashboard = () => {
                                 <button type="submit" className="bg-indigo-600 text-white px-8 py-2 rounded-md font-bold hover:bg-indigo-700 shadow-md">Add Car</button>
                             </div>
                         </form>
+                    </div>
+                </div>
+            )}
+
+            {/* License View Modal */}
+            {viewLicense && (
+                <div className="fixed inset-0 bg-gray-900/80 flex items-center justify-center p-6 z-[70]" onClick={() => setViewLicense(null)}>
+                    <div className="bg-white rounded-lg p-4 max-w-3xl max-h-[90vh] overflow-auto shadow-2xl relative" onClick={e => e.stopPropagation()}>
+                        <button onClick={() => setViewLicense(null)} className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-2xl font-bold">&times;</button>
+                        <h3 className="text-xl font-bold mb-4">Driving License</h3>
+                        <img src={`data:image/jpeg;base64,${viewLicense}`} alt="Driving License" className="max-w-full h-auto rounded" />
                     </div>
                 </div>
             )}

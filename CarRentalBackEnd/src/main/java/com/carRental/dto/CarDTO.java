@@ -20,6 +20,7 @@ public class CarDTO {
     private String pickupAddress;
     private String description;
     private Double pricePerDay;
+    private Integer seatingCapacity;
     private FuelType fuelType;
     private CarType carType;
     private CarStatus status; // AVAILABLE / BOOKED

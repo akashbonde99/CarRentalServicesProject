@@ -60,7 +60,20 @@ export const approveAdmin = async (adminId) => {
         const response = await api.post(`/admin/approve-admin/${adminId}`);
         return response.data;
     } catch (error) {
-        console.error('AuthService.approveAdmin error:', error);
+        throw error.response?.data || error.message;
+    }
+};
+
+export const uploadLicense = async (userId, file) => {
+    try {
+        const formData = new FormData();
+        formData.append('file', file);
+        const response = await api.post(`/users/${userId}/license-image`, formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('AuthService.uploadLicense error:', error);
         throw error.response?.data || error.message;
     }
 };

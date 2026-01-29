@@ -30,7 +30,7 @@ const Home = () => {
                 if (carsRes.success) {
                     const allCars = carsRes.data || [];
                     setCars(allCars);
-                    setFilteredCars(allCars.filter(car => car.status === 'AVAILABLE'));
+                    setFilteredCars(allCars);
                 }
 
                 if (citiesRes.data.success) {
@@ -53,29 +53,50 @@ const Home = () => {
         });
     };
 
-    const handleSearch = (e) => {
+    const handleSearch = async (e) => {
         e.preventDefault();
-        const searchTerm = (searchParams.location || '').trim().toLowerCase();
+        setLoading(true);
+        setError(null);
 
-        const filtered = cars.filter(car => {
-            // Must be available for the search on Home page
-            const isAvailable = car.status === 'AVAILABLE';
+        try {
+            // Use the import dynamically or assume it's available. 
+            // Better to import at top, but for now using the service.
+            const { searchCars } = await import('../services/carService');
 
-            if (!searchTerm) return isAvailable;
+            const params = {
+                location: searchParams.location,
+                pickupDate: searchParams.pickupDate,
+                dropDate: searchParams.dropDate
+            };
 
-            const city = (car.city || '').toLowerCase();
-            const address = (car.pickupAddress || '').toLowerCase();
+            const response = await searchCars(params);
 
-            return isAvailable && (city.includes(searchTerm) || address.includes(searchTerm));
-        });
-
-        setFilteredCars(filtered);
+            if (response.success) {
+                // Attach key booking details to each car object so CarCard can pass them
+                const carsWithDetails = (response.data || []).map(c => ({
+                    ...c,
+                    bookingDetails: {
+                        pickupDate: searchParams.pickupDate,
+                        dropDate: searchParams.dropDate,
+                        location: searchParams.location
+                    }
+                }));
+                setFilteredCars(carsWithDetails);
+            } else {
+                setError("No cars found or search failed.");
+            }
+        } catch (err) {
+            console.error(err);
+            setError("Error searching for cars.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleReset = () => {
         setSearchParams({ location: '', pickupDate: '', dropDate: '' });
         // Initially show all available cars
-        setFilteredCars(cars.filter(c => c.status === 'AVAILABLE'));
+        setFilteredCars(cars);
     };
 
     return (

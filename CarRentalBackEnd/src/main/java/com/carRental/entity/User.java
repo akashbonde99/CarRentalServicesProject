@@ -24,6 +24,9 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
+    @Column(nullable = true)
+    private String phoneNumber;
+
     @Column(nullable = false)
     @JsonIgnore
     private String password;
@@ -34,6 +37,10 @@ public class User {
 
     @Column(unique = true)
     private String drivingLicence;
+
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] drivingLicenceImage;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

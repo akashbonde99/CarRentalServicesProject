@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class PaymentDTO {
     private Integer id;
     private Integer bookingId;
-    private Double amount;
+    private Integer amount;
     private LocalDate paymentDate;
     private PaymentStatus paymentStatus;
     private PaymentMode paymentMode;

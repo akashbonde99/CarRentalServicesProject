@@ -27,6 +27,10 @@ public class Booking {
     @Column(nullable = false, length = 20)
     private BookingStatus bookingStatus;
 
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private PaymentStatus paymentStatus;
+
     @Column(nullable = false)
     private Double totalAmount;
 

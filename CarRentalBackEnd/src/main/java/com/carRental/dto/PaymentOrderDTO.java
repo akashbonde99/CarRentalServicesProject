@@ -13,4 +13,7 @@ public class PaymentOrderDTO {
     private PaymentStatus status;
     private LocalDate paymentDate;
     private String transactionId;
+    private String razorpayPaymentId;
+    private String razorpayOrderId;
+    private String razorpaySignature;
 }

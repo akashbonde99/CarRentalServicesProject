@@ -33,6 +33,7 @@ public class CarServiceImpl implements CarService {
                 .pickupAddress(carDTO.getPickupAddress())
                 .description(carDTO.getDescription())
                 .pricePerDay(carDTO.getPricePerDay())
+                .seatingCapacity(carDTO.getSeatingCapacity())
                 .fuelType(carDTO.getFuelType())
                 .carType(carDTO.getCarType())
                 .image(carDTO.getImage())
@@ -108,6 +109,14 @@ public class CarServiceImpl implements CarService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<CarDTO> searchAvailableCars(String city, java.time.LocalDate pickupDate, java.time.LocalDate dropDate) {
+        return carRepository.findAvailableCars(city, pickupDate, dropDate)
+                .stream()
+                .map(this::mapToDTO)
+                .collect(Collectors.toList());
+    }
+
     /* ================= MAPPER ================= */
 
     private CarDTO mapToDTO(Car car) {
@@ -121,6 +130,7 @@ public class CarServiceImpl implements CarService {
                 .pickupAddress(car.getPickupAddress())
                 .description(car.getDescription())
                 .pricePerDay(car.getPricePerDay())
+                .seatingCapacity(car.getSeatingCapacity())
                 .fuelType(car.getFuelType())
                 .carType(car.getCarType())
                 .image(car.getImage())

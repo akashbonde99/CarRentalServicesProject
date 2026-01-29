@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { processPayment } from '../services/paymentService';
 import api from '../services/api';
 import { FaCreditCard, FaLock, FaCheckCircle } from 'react-icons/fa';
 
 const Checkout = () => {
     const { bookingId } = useParams();
     const navigate = useNavigate();
+
     const [booking, setBooking] = useState(null);
     const [loading, setLoading] = useState(true);
     const [processing, setProcessing] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState('');
 
-    const [paymentMethod, setPaymentMethod] = useState('CREDIT_CARD');
+    // ✅ ADD: get logged-in user
+    const user = JSON.parse(localStorage.getItem("user"));
 
     useEffect(() => {
         const fetchBooking = async () => {
@@ -22,7 +23,7 @@ const Checkout = () => {
                 if (response.data.success) {
                     setBooking(response.data.data);
                 }
-            } catch (err) {
+            } catch {
                 setError("Could not retrieve booking details.");
             } finally {
                 setLoading(false);
@@ -31,28 +32,80 @@ const Checkout = () => {
         fetchBooking();
     }, [bookingId]);
 
-    const handlePayment = async (e) => {
-        e.preventDefault();
+    const loadRazorpay = () => {
+        return new Promise((resolve) => {
+            if (window.Razorpay) {
+                resolve(true);
+                return;
+            }
+            const script = document.createElement("script");
+            script.src = "https://checkout.razorpay.com/v1/checkout.js";
+            script.onload = () => resolve(true);
+            script.onerror = () => resolve(false);
+            document.body.appendChild(script);
+        });
+    };
+
+    const handlePayment = async () => {
         setProcessing(true);
         setError('');
 
+        const sdkLoaded = await loadRazorpay();
+        if (!sdkLoaded) {
+            setError("Razorpay SDK failed to load.");
+            setProcessing(false);
+            return;
+        }
+
         try {
-            const data = await processPayment({
-                bookingId: parseInt(bookingId),
-                amount: booking.totalAmount,
-                paymentMode: paymentMethod
+            const orderResponse = await api.post("/payments/create-order", {
+                amount: Number(booking.totalAmount),
+                currency: "INR"
             });
 
-            if (data.success) {
-                setSuccess(true);
-                setTimeout(() => {
-                    navigate('/my-bookings');
-                }, 3000);
-            } else {
-                setError(data.message || "Payment processing failed.");
-            }
+            const order = orderResponse.data;
+
+            const options = {
+                key: "rzp_test_S9HcVYCQnsXY5t",
+                amount: order.amount,
+                currency: order.currency,
+                name: "Car Booking Website",
+                description: "Car Booking Payment",
+                order_id: order.id,
+
+                //  FIX: Razorpay prefill
+                prefill: {
+                    name: user?.name || "",
+                    email: user?.email || "",
+                    contact: user?.phoneNumber || ""
+                },
+
+                handler: async function (response) {
+                    await api.post("/payments", {
+                        bookingId: booking.bookingId,
+                        amount: booking.totalAmount,
+                        paymentMode: "ONLINE",
+                        razorpayPaymentId: response.razorpay_payment_id,
+                        razorpayOrderId: response.razorpay_order_id,
+                        razorpaySignature: response.razorpay_signature,
+                        paymentDate: new Date().toISOString().split("T")[0]
+                    });
+
+                    setSuccess(true);
+                    setTimeout(() => navigate("/my-bookings"), 3000);
+                },
+
+                theme: {
+                    color: "#4f46e5"
+                }
+            };
+
+            const razorpay = new window.Razorpay(options);
+            razorpay.open();
+
         } catch (err) {
-            setError("Error connecting to payment gateway.");
+            console.error(err);
+            setError("Payment failed. Please try again.");
         } finally {
             setProcessing(false);
         }
@@ -66,8 +119,8 @@ const Checkout = () => {
             <div className="flex flex-col items-center justify-center p-20 bg-gray-50 min-h-[70vh]">
                 <FaCheckCircle className="text-green-500 mb-6" size={80} />
                 <h2 className="text-4xl font-bold text-gray-800 mb-2">Payment Successful!</h2>
-                <p className="text-gray-500 mb-8">Your reservation has been confirmed and paid. Happy driving!</p>
-                <p className="text-gray-400 text-sm italic">Redirecting to your dashboard...</p>
+                <p className="text-gray-500 mb-8">Your reservation has been confirmed.</p>
+                <p className="text-gray-400 text-sm italic">Redirecting...</p>
             </div>
         );
     }
@@ -77,82 +130,56 @@ const Checkout = () => {
             <h2 className="text-3xl font-bold mb-8 text-center">Complete Your Booking</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                {/* Summary */}
-                <div className="bg-white p-8 rounded-lg border border-gray-200 shadow-sm h-fit">
+                <div className="bg-white p-8 rounded-lg border shadow-sm">
                     <h3 className="text-xl font-bold mb-6 border-b pb-4">Reservation Summary</h3>
                     <div className="space-y-4 text-sm">
                         <div className="flex justify-between">
                             <span className="text-gray-500">Vehicle</span>
-                            <span className="font-bold">{booking.car?.brand} {booking.car?.model}</span>
+                            <span className="font-bold">
+                                {booking.car?.brand} {booking.car?.model}
+                            </span>
                         </div>
                         <div className="flex justify-between">
-                            <span className="text-gray-500">Pickup Date</span>
+                            <span className="text-gray-500">Pickup</span>
                             <span className="font-bold">{booking.pickupDate}</span>
                         </div>
                         <div className="flex justify-between">
-                            <span className="text-gray-500">Return Date</span>
+                            <span className="text-gray-500">Return</span>
                             <span className="font-bold">{booking.dropDate}</span>
                         </div>
-                        <div className="pt-4 border-t border-gray-100 flex justify-between items-center text-lg">
-                            <span className="font-bold">Total Amount</span>
-                            <span className="font-black text-indigo-600">₹{booking.totalAmount?.toLocaleString()}</span>
+                        <div className="pt-4 border-t flex justify-between text-lg">
+                            <span className="font-bold">Total</span>
+                            <span className="font-black text-indigo-600">
+                                ₹{booking.totalAmount}
+                            </span>
                         </div>
                     </div>
                 </div>
 
-                {/* Payment Form */}
-                <div className="bg-white p-8 rounded-lg border border-gray-200 shadow-sm">
+                <div className="bg-white p-8 rounded-lg border shadow-sm">
                     <h3 className="text-xl font-bold mb-6 flex items-center">
-                        <FaCreditCard className="mr-3 text-indigo-600" /> Payment Details
+                        <FaCreditCard className="mr-3 text-indigo-600" />
+                        Secure Payment
                     </h3>
 
-                    {error && <div className="bg-red-50 text-red-600 p-3 rounded text-xs mb-6 border border-red-100 font-bold">{error}</div>}
-
-                    <form onSubmit={handlePayment} className="space-y-6">
-                        <div>
-                            <label className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-3">Select Method</label>
-                            <div className="grid grid-cols-2 gap-4">
-                                <button
-                                    type="button"
-                                    onClick={() => setPaymentMethod('CREDIT_CARD')}
-                                    className={`py-3 px-4 rounded-md border text-xs font-bold transition-all ${paymentMethod === 'CREDIT_CARD' ? 'bg-indigo-600 text-white border-indigo-600 shadow-md' : 'bg-gray-50 text-gray-500 border-gray-200 hover:bg-gray-100'}`}
-                                >
-                                    Credit Card
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => setPaymentMethod('UPI')}
-                                    className={`py-3 px-4 rounded-md border text-xs font-bold transition-all ${paymentMethod === 'UPI' ? 'bg-indigo-600 text-white border-indigo-600 shadow-md' : 'bg-gray-50 text-gray-500 border-gray-200 hover:bg-gray-100'}`}
-                                >
-                                    UPI / Wallet
-                                </button>
-                            </div>
+                    {error && (
+                        <div className="bg-red-50 text-red-600 p-3 rounded text-xs mb-6 font-bold">
+                            {error}
                         </div>
+                    )}
 
-                        <div className="space-y-4">
-                            <div className="relative">
-                                <FaLock className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-300" />
-                                <input type="text" placeholder="Cardholder Name" className="w-full bg-gray-50 border-0 rounded-md px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 outline-none" required />
-                            </div>
-                            <input type="text" placeholder="Card Number" className="w-full bg-gray-50 border-0 rounded-md px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 outline-none" required />
-                            <div className="grid grid-cols-2 gap-4">
-                                <input type="text" placeholder="MM/YY" className="bg-gray-50 border-0 rounded-md px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 outline-none" required />
-                                <input type="password" placeholder="CVV" className="bg-gray-50 border-0 rounded-md px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 outline-none" required />
-                            </div>
-                        </div>
+                    <button
+                        onClick={handlePayment}
+                        disabled={processing}
+                        className={`w-full bg-indigo-600 text-white py-4 rounded-md font-bold transition-all shadow-lg
+                        ${processing ? 'opacity-50 cursor-not-allowed' : 'hover:bg-indigo-700'}`}
+                    >
+                        {processing ? "Redirecting to Razorpay..." : `Pay ₹${booking.totalAmount}`}
+                    </button>
 
-                        <button
-                            type="submit"
-                            disabled={processing}
-                            className={`w-full bg-indigo-600 text-white py-4 rounded-md font-bold hover:bg-indigo-700 transition-all shadow-lg active:scale-95 ${processing ? 'opacity-50 cursor-not-allowed' : ''}`}
-                        >
-                            {processing ? 'Processing Securely...' : `Pay ₹${booking.totalAmount?.toLocaleString()}`}
-                        </button>
-
-                        <p className="text-[10px] text-gray-400 text-center flex items-center justify-center italic">
-                            <FaLock className="mr-2" /> All transactions are encrypted and secured.
-                        </p>
-                    </form>
+                    <p className="text-[10px] text-gray-400 text-center mt-4 flex items-center justify-center italic">
+                        <FaLock className="mr-2" /> Powered by Razorpay
+                    </p>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { createBooking } from '../services/bookingService';
 import { useAuth } from '../context/AuthContext';
 import { getCarImage } from '../services/carService';
@@ -9,12 +9,14 @@ const BookCar = () => {
     const navigate = useNavigate();
     const { user } = useAuth();
 
+    const { state } = useLocation();
+
     const [car, setCar] = useState(null);
     const [loading, setLoading] = useState(true);
     const [formData, setFormData] = useState({
-        pickupDate: '',
-        dropDate: '',
-        location: '',
+        pickupDate: state?.pickupDate || '',
+        dropDate: state?.dropDate || '',
+        location: state?.location || '',
         withDriver: false
     });
     const [error, setError] = useState('');
@@ -45,10 +47,23 @@ const BookCar = () => {
         e.preventDefault();
         setError('');
 
+        if (!user.drivingLicenceImage) {
+            alert("You must upload your Drawing License in your Profile before booking a car.");
+            navigate('/profile');
+            return;
+        }
+
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         const pDate = new Date(formData.pickupDate);
         const dDate = new Date(formData.dropDate);
+
+        // Additional check for past dates even if HTML5 min attribute is bypassed
+        const todayStr = new Date().toISOString().split('T')[0];
+        if (formData.pickupDate < todayStr) {
+            setError("Pickup date cannot be in the past.");
+            return;
+        }
 
         if (!formData.pickupDate || !formData.dropDate) {
             setError("Please fill in all dates.");
@@ -70,6 +85,11 @@ const BookCar = () => {
             return;
         }
 
+        if (formData.location.toLowerCase() !== car.city.toLowerCase()) {
+            setError(`Pickup location must match the car's city: ${car.city}`);
+            return;
+        }
+
         try {
             const bookingPayload = {
                 carId: parseInt(carId),
@@ -78,9 +98,11 @@ const BookCar = () => {
             };
 
             const data = await createBooking(bookingPayload);
-            if (data.success) {
-                // Redirecting to payment checkout
-                navigate(`/checkout/${data.data.bookingId}`);
+            if (data.data) {
+                // Redirecting to My Bookings dashboard
+                navigate(`/my-bookings`);
+                // Ideally show a toast/alert: "Booking requested. Please wait for admin approval."
+                alert("Booking requested successfully! Please wait for admin approval to proceed with payment.");
             } else {
                 if (data.message?.includes('not available for booking')) {
                     setError('This car is not available for booking. Please choose a different car or date.');
@@ -113,6 +135,7 @@ const BookCar = () => {
                             <p><strong>Type:</strong> {car.carType}</p>
                             <p><strong>Fuel:</strong> {car.fuelType}</p>
                             <p><strong>City:</strong> {car.city}</p>
+                            <p><strong>Seats:</strong> {car.seatingCapacity}</p>
                             <p><strong>Price:</strong> ₹{car.pricePerDay?.toLocaleString()} / day</p>
                             <p className="mt-4">{car.description}</p>
                         </div>
@@ -126,12 +149,12 @@ const BookCar = () => {
 
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">Pickup Date</label>
-                            <input type="date" name="pickupDate" className="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:ring-indigo-500 focus:border-indigo-500" onChange={handleChange} required />
+                            <input type="date" name="pickupDate" min={new Date().toISOString().split('T')[0]} className="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:ring-indigo-500 focus:border-indigo-500" onChange={handleChange} required />
                         </div>
 
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">Return Date</label>
-                            <input type="date" name="dropDate" className="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:ring-indigo-500 focus:border-indigo-500" onChange={handleChange} required />
+                            <input type="date" name="dropDate" min={formData.pickupDate || new Date().toISOString().split('T')[0]} className="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:ring-indigo-500 focus:border-indigo-500" onChange={handleChange} required />
                         </div>
 
                         <div>

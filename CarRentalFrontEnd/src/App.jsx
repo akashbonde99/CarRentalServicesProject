@@ -11,7 +11,10 @@ import AdminDashboard from './pages/AdminDashboard';
 import BookCar from './pages/BookCar';
 import MyBookings from './pages/MyBookings';
 import Cars from './pages/Cars';
+
 import Checkout from './pages/Checkout';
+import Profile from './pages/Profile';
+import BookingDetails from './pages/BookingDetails';
 
 function App() {
   return (
@@ -26,7 +29,10 @@ function App() {
           <Route path="/book/:carId" element={<BookCar />} />
           <Route path="/checkout/:bookingId" element={<Checkout />} />
           <Route path="/my-bookings" element={<MyBookings />} />
+          <Route path="/booking/:bookingId" element={<BookingDetails />} />
+
           <Route path="/cars" element={<Cars />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
         <Footer />
       </div>

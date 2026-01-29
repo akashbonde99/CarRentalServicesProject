@@ -20,5 +20,7 @@ public interface CarService {
 
     List<CarDTO> searchCarsByCarType(CarType carType);
 
+    List<CarDTO> searchAvailableCars(String city, java.time.LocalDate pickupDate, java.time.LocalDate dropDate);
+
     void deleteCar(Long id);
 }

@@ -18,6 +18,15 @@ export const getAvailableCars = async () => {
     }
 };
 
+export const searchCars = async (searchParams) => {
+    try {
+        const response = await api.get('/cars/search', { params: searchParams });
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || error.message;
+    }
+};
+
 // Mock function to get car image
 export const getCarImage = (brand) => {
     // Return a relevant placeholder image based on brand or default
