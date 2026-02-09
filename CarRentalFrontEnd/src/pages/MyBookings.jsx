@@ -51,7 +51,7 @@ const MyBookings = () => {
                             <div>
                                 <div className="flex items-center space-x-3 mb-2">
                                     <h3 className="text-xl font-bold text-gray-800">Booking #{booking.bookingId}</h3>
-                                    <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider ${booking.bookingStatus === 'CONFIRMED' ? 'bg-green-100 text-green-700' :
+                                    <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider ${['CONFIRMED', 'PAID'].includes(booking.bookingStatus) ? 'bg-green-100 text-green-700' :
                                         booking.bookingStatus === 'PENDING' ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700'
                                         }`}>
                                         {booking.bookingStatus}

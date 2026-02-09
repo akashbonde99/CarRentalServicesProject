@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getAllCars, addCar, deleteCar } from '../services/carService';
 import { getAllBookings, updateBookingStatus } from '../services/bookingService';
 import { getPendingAdmins, approveAdmin } from '../services/authService';
-import { FaPlus, FaTrash, FaCheck, FaTimes } from 'react-icons/fa';
+import { FaPlus, FaTrash, FaCheck, FaTimes, FaMapMarkerAlt } from 'react-icons/fa';
 
 const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('cars');
@@ -15,7 +15,7 @@ const AdminDashboard = () => {
     const [showAddModal, setShowAddModal] = useState(false);
     const [carForm, setCarForm] = useState({
         brand: '', model: '', registrationNumber: '', city: '',
-        pickupAddress: '', description: '', pricePerDay: '', seatingCapacity: '',
+        pickupAddress: '', mapUrl: '', description: '', pricePerDay: '', seatingCapacity: '',
         fuelType: 'PETROL', carType: 'SEDAN', image: null
     });
 
@@ -80,6 +80,7 @@ const AdminDashboard = () => {
         });
 
         try {
+            console.log("Adding car with data:", Object.fromEntries(formData.entries()));
             const res = await addCar(formData);
             if (res.success) {
                 setShowAddModal(false);
@@ -328,6 +329,11 @@ const AdminDashboard = () => {
                             <div className="md:col-span-2">
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Pickup Address</label>
                                 <input name="pickupAddress" placeholder="Full address" onChange={handleCarFormChange} className="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:ring-indigo-500" required />
+                            </div>
+                            <div className="md:col-span-2">
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Google Maps URL</label>
+                                <input name="mapUrl" value={carForm.mapUrl} placeholder="https://www.google.com/maps/..." onChange={handleCarFormChange} className="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:ring-indigo-500" />
+                                <p className="text-[10px] text-gray-400 mt-1 italic">Optional: Paste a link to the exact pickup location.</p>
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">Price Per Day</label>

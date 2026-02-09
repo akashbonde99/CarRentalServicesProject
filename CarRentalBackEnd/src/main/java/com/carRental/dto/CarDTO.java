@@ -23,5 +23,6 @@ public class CarDTO {
     private Integer seatingCapacity;
     private FuelType fuelType;
     private CarType carType;
+    private String mapUrl;
     private CarStatus status; // AVAILABLE / BOOKED
 }

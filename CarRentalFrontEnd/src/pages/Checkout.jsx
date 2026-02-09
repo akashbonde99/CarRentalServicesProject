@@ -81,18 +81,29 @@ const Checkout = () => {
                 },
 
                 handler: async function (response) {
-                    await api.post("/payments", {
-                        bookingId: booking.bookingId,
-                        amount: booking.totalAmount,
-                        paymentMode: "ONLINE",
-                        razorpayPaymentId: response.razorpay_payment_id,
-                        razorpayOrderId: response.razorpay_order_id,
-                        razorpaySignature: response.razorpay_signature,
-                        paymentDate: new Date().toISOString().split("T")[0]
-                    });
+                    try {
+                        const confirmResponse = await api.post("/payments", {
+                            bookingId: booking.bookingId,
+                            amount: booking.totalAmount,
+                            paymentMode: "ONLINE",
+                            razorpayPaymentId: response.razorpay_payment_id,
+                            razorpayOrderId: response.razorpay_order_id,
+                            razorpaySignature: response.razorpay_signature,
+                            paymentDate: new Date().toISOString().split("T")[0]
+                        });
 
-                    setSuccess(true);
-                    setTimeout(() => navigate("/my-bookings"), 3000);
+                        if (confirmResponse.data.success) {
+                            setSuccess(true);
+                            setTimeout(() => navigate("/my-bookings"), 3000);
+                        } else {
+                            alert("Server failed to save payment record: " + confirmResponse.data.message);
+                            setError("Payment verified but record not saved. Please contact support.");
+                        }
+                    } catch (err) {
+                        console.error("Payment confirmation error:", err);
+                        alert("Error communicating with backend: " + err.message);
+                        setError("Critical error saving payment. Please check your dashboard.");
+                    }
                 },
 
                 theme: {

@@ -40,6 +40,12 @@ const Register = () => {
             return;
         }
 
+        const phoneDigits = (formData.phoneNumber || '').replace(/\D/g, '');
+        if (phoneDigits.length !== 10) {
+            setError("Phone number must be exactly 10 digits.");
+            return;
+        }
+
         if (formData.password.length < 6) {
             setError("Password must be at least 6 characters long.");
             return;
@@ -57,7 +63,7 @@ const Register = () => {
                 password: formData.password,
                 role: formData.role,
                 drivingLicence: formData.drivingLicence ? formData.drivingLicence.trim() : null,
-                phoneNumber: formData.phoneNumber ? formData.phoneNumber.trim() : null
+                phoneNumber: phoneDigits
             });
 
             if (data.success) {
@@ -108,7 +114,17 @@ const Register = () => {
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                        <input type="tel" name="phoneNumber" className="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:ring-indigo-500 focus:border-indigo-500" placeholder="+91 99999 99999" onChange={handleChange} />
+                        <input
+                            type="tel"
+                            name="phoneNumber"
+                            inputMode="numeric"
+                            pattern="[0-9]{10}"
+                            maxLength={10}
+                            className="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:ring-indigo-500 focus:border-indigo-500"
+                            placeholder="10 digit mobile number"
+                            onChange={handleChange}
+                            required
+                        />
                     </div>
 
                     <div>

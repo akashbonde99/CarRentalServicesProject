@@ -29,6 +29,12 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private com.carRental.security.JwtUtils jwtUtils;
 
+    @Autowired
+    private EmailService emailService;
+
+    @Autowired
+    private OtpService otpService;
+
     @Override
     public UserDTO register(RegisterRequestDTO registerRequestDTO) {
         User user;
@@ -64,5 +70,37 @@ public class AuthServiceImpl implements AuthService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
         String token = jwtUtils.generateToken(new com.carRental.security.CustomUserDetails(user));
         return new com.carRental.dto.AuthResponseDTO(token, modelMapper.map(user, UserDTO.class));
+    }
+
+    @Override
+    public void forgotPassword(String email) {
+        userRepository.findByEmail(email).ifPresent(user -> {
+            String otp = otpService.generateOtp(email);
+            emailService.sendOtpEmail(email, otp);
+        });
+        // We don't throw error if not found (Security requirement: Don't reveal "email
+        // not found")
+    }
+
+    @Override
+    public boolean verifyOtp(String email, String otp) {
+        return otpService.verifyOtp(email, otp);
+    }
+
+    @Override
+    @org.springframework.transaction.annotation.Transactional
+    public void resetPassword(String email, String otp, String newPassword) {
+        if (!otpService.isValidForReset(email, otp)) {
+            throw new RuntimeException("Invalid or expired OTP");
+        }
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+
+        // Success -> Clear OTP
+        otpService.clearOtp(email);
     }
 }

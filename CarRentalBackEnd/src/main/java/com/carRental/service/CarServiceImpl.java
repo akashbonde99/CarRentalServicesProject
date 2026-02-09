@@ -4,21 +4,26 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.carRental.dto.CarDTO;
 import com.carRental.entity.Car;
+import com.carRental.entity.CarLocation;
 import com.carRental.entity.CarStatus;
 import com.carRental.entity.CarType;
 import com.carRental.entity.FuelType;
+import com.carRental.repository.CarLocationRepository;
 import com.carRental.repository.CarRepository;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class CarServiceImpl implements CarService {
 
     private final CarRepository carRepository;
+    private final CarLocationRepository locationRepository;
 
     /* ================= ADD CAR (ADMIN) ================= */
 
@@ -37,8 +42,18 @@ public class CarServiceImpl implements CarService {
                 .fuelType(carDTO.getFuelType())
                 .carType(carDTO.getCarType())
                 .image(carDTO.getImage())
-                .status(CarStatus.AVAILABLE) // default
+                .status(CarStatus.AVAILABLE)
                 .build();
+
+        if (carDTO.getMapUrl() != null && !carDTO.getMapUrl().trim().isEmpty()) {
+            CarLocation loc = new CarLocation();
+            loc.setCar(car);
+            loc.setMapUrl(carDTO.getMapUrl().trim());
+            loc.setAddress(carDTO.getPickupAddress());
+            loc.setCity(car.getCity());
+            loc.setName(car.getBrand() + " " + car.getModel() + " Location");
+            car.setLocation(loc);
+        }
 
         Car savedCar = carRepository.save(car);
 
@@ -49,10 +64,8 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void deleteCar(Long carId) {
-
         Car car = carRepository.findById(carId)
                 .orElseThrow(() -> new RuntimeException("Car not found"));
-
         carRepository.delete(car);
     }
 
@@ -60,7 +73,6 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<CarDTO> getAllCars() {
-
         return carRepository.findAll()
                 .stream()
                 .map(this::mapToDTO)
@@ -71,7 +83,6 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public CarDTO getCarById(Long carId) {
-
         Car car = carRepository.findById(carId)
                 .orElseThrow(() -> new RuntimeException("Car not found"));
 
@@ -82,7 +93,6 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<CarDTO> getCarsByStatus(CarStatus status) {
-
         return carRepository.findByStatus(status)
                 .stream()
                 .map(this::mapToDTO)
@@ -93,7 +103,6 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<CarDTO> searchCarsByFuelType(FuelType fuelType) {
-
         return carRepository.findByFuelType(fuelType)
                 .stream()
                 .map(this::mapToDTO)
@@ -102,7 +111,6 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<CarDTO> searchCarsByCarType(CarType carType) {
-
         return carRepository.findByCarType(carType)
                 .stream()
                 .map(this::mapToDTO)
@@ -120,6 +128,9 @@ public class CarServiceImpl implements CarService {
     /* ================= MAPPER ================= */
 
     private CarDTO mapToDTO(Car car) {
+        String mapUrl = locationRepository.findByCar(car)
+                .map(CarLocation::getMapUrl)
+                .orElse(null);
 
         return CarDTO.builder()
                 .carId(car.getCarId())
@@ -135,6 +146,7 @@ public class CarServiceImpl implements CarService {
                 .carType(car.getCarType())
                 .image(car.getImage())
                 .status(car.getStatus())
+                .mapUrl(mapUrl)
                 .build();
     }
 }

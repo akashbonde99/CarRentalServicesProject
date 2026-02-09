@@ -29,7 +29,8 @@ const Login = () => {
                 }
             }
         } catch (err) {
-            setError('Could not connect to the authentication server.');
+            // Display specific error message from backend if available
+            setError(err.message || 'Could not connect to the authentication server.');
         }
     };
 
@@ -66,6 +67,9 @@ const Login = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
+                        <div className="flex justify-end mt-1">
+                            <Link to="/forgot-password" size="sm" className="text-xs text-indigo-600 hover:underline font-semibold">Forgot Password?</Link>
+                        </div>
                     </div>
 
                     <button

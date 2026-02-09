@@ -15,6 +15,7 @@ import Cars from './pages/Cars';
 import Checkout from './pages/Checkout';
 import Profile from './pages/Profile';
 import BookingDetails from './pages/BookingDetails';
+import ForgotPassword from './pages/ForgotPassword';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/book/:carId" element={<BookCar />} />

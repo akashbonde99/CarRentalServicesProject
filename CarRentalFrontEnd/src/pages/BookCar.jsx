@@ -3,6 +3,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { createBooking } from '../services/bookingService';
 import { useAuth } from '../context/AuthContext';
 import { getCarImage } from '../services/carService';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 
 const BookCar = () => {
     const { carId } = useParams();
@@ -16,7 +17,6 @@ const BookCar = () => {
     const [formData, setFormData] = useState({
         pickupDate: state?.pickupDate || '',
         dropDate: state?.dropDate || '',
-        location: state?.location || '',
         withDriver: false
     });
     const [error, setError] = useState('');
@@ -48,7 +48,7 @@ const BookCar = () => {
         setError('');
 
         if (!user.drivingLicenceImage) {
-            alert("You must upload your Drawing License in your Profile before booking a car.");
+            alert("You must upload your Driving License in your Profile before booking a car.");
             navigate('/profile');
             return;
         }
@@ -80,21 +80,12 @@ const BookCar = () => {
             return;
         }
 
-        if (!formData.location || formData.location.trim().length === 0) {
-            setError("Please specify a pickup location.");
-            return;
-        }
-
-        if (formData.location.toLowerCase() !== car.city.toLowerCase()) {
-            setError(`Pickup location must match the car's city: ${car.city}`);
-            return;
-        }
-
         try {
             const bookingPayload = {
                 carId: parseInt(carId),
                 pickupDate: formData.pickupDate,
-                dropDate: formData.dropDate
+                dropDate: formData.dropDate,
+                pickupCity: car.city
             };
 
             const data = await createBooking(bookingPayload);
@@ -134,9 +125,23 @@ const BookCar = () => {
                         <div className="space-y-2 text-gray-700">
                             <p><strong>Type:</strong> {car.carType}</p>
                             <p><strong>Fuel:</strong> {car.fuelType}</p>
-                            <p><strong>City:</strong> {car.city}</p>
                             <p><strong>Seats:</strong> {car.seatingCapacity}</p>
                             <p><strong>Price:</strong> ₹{car.pricePerDay?.toLocaleString()} / day</p>
+                            {car.mapUrl && (
+                                <div className="mt-4 p-3 bg-indigo-50 border border-indigo-100 rounded-lg">
+                                    <p className="text-xs font-bold text-indigo-800 mb-1 flex items-center gap-2">
+                                        <FaMapMarkerAlt /> Pickup Location Map
+                                    </p>
+                                    <a
+                                        href={car.mapUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-indigo-600 hover:text-indigo-800 text-sm font-semibold underline flex items-center gap-1"
+                                    >
+                                        View on Google Maps
+                                    </a>
+                                </div>
+                            )}
                             <p className="mt-4">{car.description}</p>
                         </div>
                     </div>
@@ -157,10 +162,6 @@ const BookCar = () => {
                             <input type="date" name="dropDate" min={formData.pickupDate || new Date().toISOString().split('T')[0]} className="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:ring-indigo-500 focus:border-indigo-500" onChange={handleChange} required />
                         </div>
 
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Pickup Location</label>
-                            <input type="text" name="location" className="w-full border border-gray-300 rounded-md px-4 py-2 text-sm focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter address" onChange={handleChange} />
-                        </div>
 
                         <div className="flex items-center">
                             <input type="checkbox" name="withDriver" id="driver" className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" onChange={handleChange} />

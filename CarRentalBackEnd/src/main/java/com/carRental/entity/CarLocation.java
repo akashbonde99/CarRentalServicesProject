@@ -16,14 +16,23 @@ public class CarLocation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long locationId;
 
-    @Column(nullable = false)
-    private Double latitude;
-
-    @Column(nullable = false)
-    private Double longitude;
+    @Column(nullable = false, length = 1000)
+    private String mapUrl;
 
     @Column(nullable = false)
     private String address;
+
+    @Column(nullable = false)
+    private String city;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = true)
+    private Double latitude;
+
+    @Column(nullable = true)
+    private Double longitude;
 
     @JsonIgnore
     @OneToOne

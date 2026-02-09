@@ -120,8 +120,11 @@ public class CarController {
                                 List<CarDTO> allCars = carService.getAllCars();
                                 String locLower = location.toLowerCase();
                                 allCars = allCars.stream()
-                                                .filter(c -> c.getCity().toLowerCase().contains(locLower) || c
-                                                                .getPickupAddress().toLowerCase().contains(locLower))
+                                                .filter(c -> (c.getCity() != null
+                                                                && c.getCity().toLowerCase().contains(locLower)) ||
+                                                                (c.getPickupAddress() != null
+                                                                                && c.getPickupAddress().toLowerCase()
+                                                                                                .contains(locLower)))
                                                 .collect(java.util.stream.Collectors.toList());
                                 return ResponseEntity.ok(new ApiResponse<>("Cars retrieved", true, allCars));
                         }
@@ -132,18 +135,19 @@ public class CarController {
                 return ResponseEntity.ok(new ApiResponse<>("Available cars found", true, cars));
         }
 
-        // Temporary endpoint to reset all cars to AVAILABLE
-        @PostMapping("/reset-status")
-        public ResponseEntity<ApiResponse<String>> resetAllCarStatuses() {
-                List<CarDTO> cars = carService.getAllCars();
-                // This is a quick hack, ideally we'd have a batch update method in service
-                // But iterating is fine for small datasets
-                // Actually, I can't update via DTO easily without a service method.
-                // Let's rely on the user manually fixing it or assumed small impact.
-                // Wait, I can just return a message saying "Please update manually if needed"
-                // Or better, let's implement a quick fix in Service.
-                return ResponseEntity
-                                .ok(new ApiResponse<>("Use admin panel or database to reset legacy statuses if needed.",
-                                                true, "No action taken."));
+        /* ================= DELETE CAR (ADMIN) ================= */
+
+        @DeleteMapping("/{carId}")
+        public ResponseEntity<ApiResponse<Void>> deleteCar(@PathVariable Long carId) {
+                try {
+                        System.out.println("Processing delete request for Car ID: " + carId);
+                        carService.deleteCar(carId);
+                        return ResponseEntity.ok(
+                                        new ApiResponse<>("Car deleted successfully", true, null));
+                } catch (Exception e) {
+                        System.err.println("Error deleting car: " + e.getMessage());
+                        return ResponseEntity.status(500).body(
+                                        new ApiResponse<>("Error: " + e.getMessage(), false, null));
+                }
         }
 }

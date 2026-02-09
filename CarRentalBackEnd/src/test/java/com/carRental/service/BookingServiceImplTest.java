@@ -18,6 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.carRental.dto.BookingRequestDTO;
 import com.carRental.entity.Car;
+import com.carRental.entity.CarLocation;
 import com.carRental.entity.CarStatus;
 import com.carRental.entity.User;
 import com.carRental.repository.BookingRepository;
@@ -65,6 +66,7 @@ public class BookingServiceImplTest {
 
         User user = new User();
         user.setEmail(userEmail);
+        user.setDrivingLicenceImage(new byte[] { 1, 2, 3 }); // Add license for validation
 
         Car car = new Car();
         car.setCarId(carId);
@@ -102,6 +104,7 @@ public class BookingServiceImplTest {
         User user = new User();
         user.setUserId(1L);
         user.setEmail(userEmail);
+        user.setDrivingLicenceImage(new byte[] { 1, 2, 3 }); // Add license for validation
 
         Car car = new Car();
         car.setCarId(carId);

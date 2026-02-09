@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.carRental.dto.ApiResponse;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
@@ -38,6 +39,15 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse<Void>> handleUsernameNotFound(UsernameNotFoundException e) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(new ApiResponse<>("We could not find an account with this email.", false, null));
+    }
+
+    /**
+     * Shown when wrong password is used.
+     */
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ApiResponse<Void>> handleBadCredentials(BadCredentialsException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(new ApiResponse<>("Invalid credentials", false, null));
     }
 
     @ExceptionHandler(Exception.class)

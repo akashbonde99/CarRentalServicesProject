@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@org.springframework.transaction.annotation.Transactional
 public class PaymentServiceImpl implements PaymentService {
 
     private final PaymentRepository paymentRepository;
@@ -27,49 +28,84 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public PaymentDTO makePayment(PaymentOrderDTO paymentOrderDTO) {
-        Payment payment = modelMapper.map(paymentOrderDTO, Payment.class);
-        if (paymentOrderDTO.getBookingId() != null) {
-            Booking booking = bookingRepository.findById(Long.valueOf(paymentOrderDTO.getBookingId()))
-                    .orElseThrow(() -> new RuntimeException("Booking not found"));
+        try {
+            System.out.println("DEBUG: Entering makePayment. BookingId: " + paymentOrderDTO.getBookingId());
 
-            // Strict payment check
-            if (booking.getBookingStatus() != com.carRental.entity.BookingStatus.CONFIRMED) {
-                throw new RuntimeException("Booking must be confirmed before payment.");
+            if (paymentOrderDTO.getBookingId() == null) {
+                throw new RuntimeException("Booking ID is required for payment.");
             }
+
+            // 1. Find Booking
+            Booking booking = bookingRepository.findById(paymentOrderDTO.getBookingId())
+                    .orElseThrow(() -> new RuntimeException("Booking not found: " + paymentOrderDTO.getBookingId()));
+
+            System.out.println("DEBUG: Found booking: " + booking.getBookingId() + " current status: "
+                    + booking.getBookingStatus());
+
+            // 2. Prevent Multiple Payments for same booking (Unique constraint)
+            // findByBooking_BookingId check ensures we reuse the record if user hits Pay
+            // again
+            Payment payment = paymentRepository.findByBooking_BookingId(booking.getBookingId())
+                    .orElse(new Payment());
+
             payment.setBooking(booking);
-            // Update booking payment status on success (done below)
+            payment.setAmount(
+                    paymentOrderDTO.getAmount() != null ? paymentOrderDTO.getAmount() : booking.getTotalAmount());
+            payment.setPaymentDate(java.time.LocalDate.now());
+            payment.setPaymentStatus(com.carRental.entity.PaymentStatus.PENDING); // Initial status
+
+            // 3. Verify Razorpay
+            if (paymentOrderDTO.getRazorpayPaymentId() != null) {
+                System.out.println("DEBUG: Verifying Razorpay payment: " + paymentOrderDTO.getRazorpayPaymentId());
+                boolean isVerified = razorpayService.verifySignature(
+                        paymentOrderDTO.getRazorpayOrderId(),
+                        paymentOrderDTO.getRazorpayPaymentId(),
+                        paymentOrderDTO.getRazorpaySignature());
+
+                if (!isVerified) {
+                    System.err.println("DEBUG: Verification FAILED");
+                    payment.setPaymentStatus(PaymentStatus.FAILED);
+                    paymentRepository.save(payment);
+                    throw new RuntimeException("Payment verification failed");
+                }
+
+                System.out.println("DEBUG: Verification SUCCESS");
+                payment.setRazorpayPaymentId(paymentOrderDTO.getRazorpayPaymentId());
+                payment.setRazorpayOrderId(paymentOrderDTO.getRazorpayOrderId());
+                payment.setPaymentStatus(PaymentStatus.SUCCESS);
+
+                // Sync Booking
+                booking.setPaymentStatus(PaymentStatus.SUCCESS);
+                booking.setBookingStatus(com.carRental.entity.BookingStatus.PAID);
+                bookingRepository.save(booking);
+                System.out.println("DEBUG: Booking status updated to PAID");
+            } else {
+                // Manual/Mock success
+                payment.setPaymentStatus(PaymentStatus.SUCCESS);
+                booking.setPaymentStatus(PaymentStatus.SUCCESS);
+                booking.setBookingStatus(com.carRental.entity.BookingStatus.PAID);
+                bookingRepository.save(booking);
+            }
+
+            System.out.println("DEBUG: Attempting to save payment record...");
+            Payment saved = paymentRepository.save(payment);
+            System.out.println("DEBUG: Payment saved successfully. ID: " + saved.getPaymentId());
+
+            return PaymentDTO.builder()
+                    .id(saved.getPaymentId())
+                    .bookingId(saved.getBooking() != null ? saved.getBooking().getBookingId() : null)
+                    .amount(saved.getAmount())
+                    .paymentDate(saved.getPaymentDate())
+                    .paymentStatus(saved.getPaymentStatus())
+                    .paymentMode(saved.getPaymentMode())
+                    .transactionId(saved.getRazorpayPaymentId())
+                    .build();
+
+        } catch (Exception e) {
+            System.err.println("CRITICAL ERROR in PaymentServiceImpl: " + e.getMessage());
+            e.printStackTrace();
+            throw e;
         }
-
-        if (paymentOrderDTO.getRazorpayPaymentId() != null) {
-            boolean isVerified = razorpayService.verifySignature(
-                    paymentOrderDTO.getRazorpayOrderId(),
-                    paymentOrderDTO.getRazorpayPaymentId(),
-                    paymentOrderDTO.getRazorpaySignature());
-
-            if (!isVerified) {
-                payment.setPaymentStatus(PaymentStatus.FAILED); // Set status to failed
-                throw new RuntimeException("Payment verification failed");
-            }
-            payment.setRazorpayPaymentId(paymentOrderDTO.getRazorpayPaymentId());
-            payment.setRazorpayOrderId(paymentOrderDTO.getRazorpayOrderId());
-            payment.setPaymentStatus(PaymentStatus.SUCCESS);
-
-            // Sync with Booking
-            if (payment.getBooking() != null) {
-                payment.getBooking().setPaymentStatus(PaymentStatus.SUCCESS);
-                bookingRepository.save(payment.getBooking());
-            }
-
-        } else if (payment.getPaymentStatus() == null) {
-            payment.setPaymentStatus(PaymentStatus.SUCCESS);
-            // Sync with Booking
-            if (payment.getBooking() != null) {
-                payment.getBooking().setPaymentStatus(PaymentStatus.SUCCESS);
-                bookingRepository.save(payment.getBooking());
-            }
-        }
-        Payment savedPayment = paymentRepository.save(payment);
-        return modelMapper.map(savedPayment, PaymentDTO.class);
     }
 
     @Override

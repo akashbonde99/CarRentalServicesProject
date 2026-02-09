@@ -16,7 +16,6 @@ import com.carRental.dto.UserDTO;
 import com.carRental.entity.Booking;
 import com.carRental.entity.BookingStatus;
 import com.carRental.entity.Car;
-// import com.carRental.entity.CarStatus;
 import com.carRental.entity.PaymentStatus;
 import com.carRental.entity.User;
 import com.carRental.repository.BookingRepository;
@@ -66,8 +65,10 @@ public class BookingServiceImpl implements BookingService {
                 }
 
                 if (bookingRequestDTO.getPickupCity() != null &&
+                                car.getCity() != null &&
                                 !bookingRequestDTO.getPickupCity().equalsIgnoreCase(car.getCity())) {
-                        throw new RuntimeException("Pickup city must match the car's location: " + car.getCity());
+                        throw new RuntimeException("Pickup city must match the car's location: "
+                                        + car.getCity());
                 }
 
                 if (bookingRequestDTO.getPickupDate().isBefore(java.time.LocalDate.now())) {
@@ -260,6 +261,8 @@ public class BookingServiceImpl implements BookingService {
                                                 .fuelType(car.getFuelType())
                                                 .carType(car.getCarType())
                                                 .status(car.getStatus())
+                                                .mapUrl(car.getLocation() != null ? car.getLocation().getMapUrl()
+                                                                : null)
                                                 .build())
                                 .pickupDate(booking.getPickupDate())
                                 .dropDate(booking.getDropDate())

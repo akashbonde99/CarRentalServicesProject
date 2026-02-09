@@ -9,15 +9,6 @@ export const getAllCars = async () => {
     }
 };
 
-export const getAvailableCars = async () => {
-    try {
-        const response = await api.get('/cars/available');
-        return response.data;
-    } catch (error) {
-        throw error.response?.data || error.message;
-    }
-};
-
 export const searchCars = async (searchParams) => {
     try {
         const response = await api.get('/cars/search', { params: searchParams });
@@ -58,7 +49,7 @@ export const addCar = async (carData) => {
 
 export const deleteCar = async (carId) => {
     try {
-        const response = await api.delete(`/admin/cars/${carId}`);
+        const response = await api.delete(`/cars/${carId}`);
         return response.data;
     } catch (error) {
         throw error.response?.data || error.message;

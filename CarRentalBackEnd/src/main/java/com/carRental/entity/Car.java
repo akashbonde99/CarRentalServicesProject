@@ -31,15 +31,15 @@ public class Car {
     @Column(unique = true, nullable = false)
     private String registrationNumber;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private CarStatus status; // AVAILABLE / BOOKED
-
     @Column(nullable = false)
     private String city;
 
     @Column(nullable = false)
     private String pickupAddress;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private CarStatus status; // AVAILABLE / BOOKED
 
     @Column(length = 1000)
     private String description;

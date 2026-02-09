@@ -15,9 +15,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PaymentDTO {
-    private Integer id;
-    private Integer bookingId;
-    private Integer amount;
+    private Long id;
+    private Long bookingId;
+    private Double amount;
     private LocalDate paymentDate;
     private PaymentStatus paymentStatus;
     private PaymentMode paymentMode;
