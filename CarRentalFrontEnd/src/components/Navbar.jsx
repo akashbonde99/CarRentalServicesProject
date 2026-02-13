@@ -3,12 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
-    const { user, logout } = useAuth();
+    const { user, logout } = useAuth(); // Hook to get current user state
     const navigate = useNavigate();
 
     const handleLogout = () => {
         logout();
-        navigate('/login');
+        navigate('/login'); // Redirect to login page after signing out
     };
 
     return (
@@ -22,12 +22,16 @@ const Navbar = () => {
                     <Link to="/" className="hover:text-indigo-400 transition-colors">Home</Link>
                     <Link to="/cars" className="hover:text-indigo-400 transition-colors">Cars</Link>
 
+                    {/* Conditional Rendering: Show specific links if user is logged in */}
                     {user ? (
                         <>
                             <Link to="/my-bookings" className="hover:text-indigo-400 transition-colors">My Bookings</Link>
+
+                            {/* Only show Admin Dashboard link if the user is an ADMIN */}
                             {user.role === 'ADMIN' && (
                                 <Link to="/admin/dashboard" className="hover:text-indigo-400 transition-colors bg-indigo-600 px-3 py-1 rounded">Admin</Link>
                             )}
+
                             <div className="flex items-center space-x-4 border-l pl-4 border-gray-600">
                                 <Link to="/profile" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">{user.name}</Link>
                                 <button
@@ -39,6 +43,7 @@ const Navbar = () => {
                             </div>
                         </>
                     ) : (
+                        // If not logged in, show Login/Signup buttons
                         <div className="space-x-4">
                             <Link to="/login" className="hover:text-indigo-400 font-medium">Login</Link>
                             <Link to="/register" className="bg-indigo-600 hover:bg-indigo-700 px-5 py-2 rounded-md font-bold transition-all">Sign Up</Link>

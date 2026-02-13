@@ -2,8 +2,6 @@ package com.carRental.controller;
 
 import java.util.Map;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,28 +49,6 @@ public class PaymentController {
 
         return ResponseEntity.ok(
                 new ApiResponse<>("Payment processed successfully", true, createdPayment));
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<PaymentDTO>> getPaymentById(
-            @PathVariable Long id) {
-
-        PaymentDTO payment = paymentService.getPaymentById(id);
-
-        if (payment != null) {
-            return ResponseEntity.ok(
-                    new ApiResponse<>("Payment details retrieved", true, payment));
-        }
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(new ApiResponse<>("Payment not found", false, null));
-    }
-
-    @GetMapping
-    public ResponseEntity<ApiResponse<List<PaymentDTO>>> getAllPayments() {
-        List<PaymentDTO> payments = paymentService.getAllPayments();
-        return ResponseEntity.ok(
-                new ApiResponse<>("All payments retrieved", true, payments));
     }
 
     @GetMapping("/booking/{bookingId}")

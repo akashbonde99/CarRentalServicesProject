@@ -20,6 +20,10 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
+    // This endpoint handles new user registration.
+    // It takes user details (like name, email, password) from the request body,
+    // verifies them, and if everything represents a valid new user, it saves them
+    // to the database.
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<UserDTO>> register(
             @Valid @RequestBody RegisterRequestDTO registerRequestDTO) {
@@ -28,6 +32,10 @@ public class AuthController {
                 .ok(new ApiResponse<>("User registered successfully", true, registeredUser));
     }
 
+    // This is the login endpoint.
+    // When a user tries to sign in, we check their email and password.
+    // If they match our records, we generate a special token (JWT) for them so they
+    // can stay logged in.
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<com.carRental.dto.AuthResponseDTO>> login(
             @RequestBody com.carRental.dto.LoginRequestDTO loginRequestDTO) {
@@ -35,6 +43,8 @@ public class AuthController {
         return ResponseEntity.ok(new ApiResponse<>("Login successful", true, authResponse));
     }
 
+    // Handles requests when a user forgets their password.
+    // It sends an OTP (One Time Password) to their registered email address.
     @PostMapping("/forgot-password")
     public ResponseEntity<ApiResponse<String>> forgotPassword(
             @RequestBody com.carRental.dto.ForgotPasswordRequest request) {
@@ -42,6 +52,9 @@ public class AuthController {
         return ResponseEntity.ok(new ApiResponse<>("OTP sent to your email if registered", true, null));
     }
 
+    // Verifies the OTP entered by the user.
+    // If the OTP matches what we sent to their email, we allow them to proceed to
+    // reset their password.
     @PostMapping("/verify-otp")
     public ResponseEntity<ApiResponse<String>> verifyOtp(
             @RequestBody com.carRental.dto.VerifyOtpRequest request) {
@@ -53,6 +66,8 @@ public class AuthController {
         }
     }
 
+    // Finally, this endpoint updates the user's password to the new one they chose.
+    // This only happens after the OTP has been verified.
     @PostMapping("/reset-password")
     public ResponseEntity<ApiResponse<String>> resetPassword(
             @RequestBody com.carRental.dto.ResetPasswordRequest request) {

@@ -4,19 +4,25 @@ import { getAllCars } from '../services/carService';
 import CarCard from '../components/CarCard';
 
 const Home = () => {
+    // State to hold all cars and the filtered list (for search results)
     const [cars, setCars] = useState([]);
     const [filteredCars, setFilteredCars] = useState([]);
+
+    // Dropdown options for cities
     const [cities, setCities] = useState([]);
+
+    // UI states
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // Search state
+    // Search form state
     const [searchParams, setSearchParams] = useState({
         location: '',
         pickupDate: '',
         dropDate: ''
     });
 
+    // When the page loads, we fetch all cars and valid cities from the backend.
     useEffect(() => {
         const fetchHomeData = async () => {
             try {
@@ -30,7 +36,7 @@ const Home = () => {
                 if (carsRes.success) {
                     const allCars = carsRes.data || [];
                     setCars(allCars);
-                    setFilteredCars(allCars);
+                    setFilteredCars(allCars); // Initially, show everything
                 }
 
                 if (citiesRes.data.success) {
@@ -53,14 +59,15 @@ const Home = () => {
         });
     };
 
+    // The logic to filter cars based on user input.
+    // If they select dates, we need to ask the backend "Which cars are free?".
     const handleSearch = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError(null);
 
         try {
-            // Use the import dynamically or assume it's available. 
-            // Better to import at top, but for now using the service.
+            // Using dynamic import to avoid circular dependency issues if any
             const { searchCars } = await import('../services/carService');
 
             const params = {
@@ -95,7 +102,7 @@ const Home = () => {
 
     const handleReset = () => {
         setSearchParams({ location: '', pickupDate: '', dropDate: '' });
-        // Initially show all available cars
+        // Reset to show all cars again
         setFilteredCars(cars);
     };
 

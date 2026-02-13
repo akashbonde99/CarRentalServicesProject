@@ -5,12 +5,17 @@ import { getPendingAdmins, approveAdmin } from '../services/authService';
 import { FaPlus, FaTrash, FaCheck, FaTimes, FaMapMarkerAlt } from 'react-icons/fa';
 
 const AdminDashboard = () => {
-    const [activeTab, setActiveTab] = useState('cars');
+    // We use tabs to switch between different admin views
+    const [activeTab, setActiveTab] = useState('cars'); // 'cars', 'bookings', or 'admins'
+
+    // Data states
     const [cars, setCars] = useState([]);
     const [bookings, setBookings] = useState([]);
     const [pendingAdmins, setPendingAdmins] = useState([]);
+
+    // UI states
     const [loading, setLoading] = useState(true);
-    const [viewLicense, setViewLicense] = useState(null);
+    const [viewLicense, setViewLicense] = useState(null); // To show the license image modal
 
     const [showAddModal, setShowAddModal] = useState(false);
     const [carForm, setCarForm] = useState({
@@ -19,6 +24,7 @@ const AdminDashboard = () => {
         fuelType: 'PETROL', carType: 'SEDAN', image: null
     });
 
+    // Fetch data whenever the tab changes to keep it fresh
     useEffect(() => {
         if (activeTab === 'cars') fetchCars();
         else if (activeTab === 'bookings') fetchBookings();
@@ -56,7 +62,7 @@ const AdminDashboard = () => {
         if (!window.confirm("Are you sure you want to delete this car?")) return;
         try {
             await deleteCar(id);
-            fetchCars();
+            fetchCars(); // Refresh the list
         } catch (err) { alert("Failed to delete car."); }
     };
 
@@ -93,6 +99,7 @@ const AdminDashboard = () => {
         }
     };
 
+    // Approve or Reject a booking
     const handleStatusUpdate = async (id, status) => {
         try {
             await updateBookingStatus(id, status);
@@ -100,6 +107,7 @@ const AdminDashboard = () => {
         } catch (err) { alert("Failed to update status."); }
     };
 
+    // Approve a new Admin user
     const handleApproveAdmin = async (adminId) => {
         if (!window.confirm("Approve this admin? They will gain full admin access.")) return;
         try {

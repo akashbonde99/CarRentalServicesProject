@@ -35,6 +35,14 @@ public class BookingServiceImpl implements BookingService {
 
         /* ================= CREATE BOOKING ================= */
 
+        // The core logic for making a reservation.
+        // It performs several checks:
+        // 1. Is the user valid?
+        // 2. Has the user uploaded a driving license? (Crucial!)
+        // 3. Is the car available for the chosen dates? (Overlapping check)
+        // 4. Does the pickup city match where the car actually is?
+        // 5. Are the dates valid (not in the past)?
+        // If all good, it calculates the price and saves the booking as "PENDING".
         @Override
         public BookingResponseDTO createBooking(BookingRequestDTO bookingRequestDTO) {
 
@@ -54,7 +62,7 @@ public class BookingServiceImpl implements BookingService {
                                         "You must upload your Driving License in your Profile before booking.");
                 }
 
-                // Check for overlapping bookings instead of global status
+                // Check for overlapping bookings
                 boolean isBooked = bookingRepository.hasOverlappingBooking(
                                 car.getCarId(),
                                 bookingRequestDTO.getPickupDate(),
@@ -75,6 +83,7 @@ public class BookingServiceImpl implements BookingService {
                         throw new RuntimeException("Pickup date cannot be in the past");
                 }
 
+                // Calculate Total Cost: Days * Price Per Day
                 long days = ChronoUnit.DAYS.between(
                                 bookingRequestDTO.getPickupDate(),
                                 bookingRequestDTO.getDropDate());
@@ -84,14 +93,12 @@ public class BookingServiceImpl implements BookingService {
                 Booking booking = Booking.builder()
                                 .pickupDate(bookingRequestDTO.getPickupDate())
                                 .dropDate(bookingRequestDTO.getDropDate())
-                                .bookingStatus(BookingStatus.PENDING)
+                                .bookingStatus(BookingStatus.PENDING) // Always starts as Pending until Admin approves
                                 .paymentStatus(PaymentStatus.PENDING)
                                 .totalAmount(totalAmount)
                                 .user(user)
                                 .car(car)
                                 .build();
-
-                // car.setStatus(CarStatus.BOOKED); // No longer locking the car globally
 
                 Booking savedBooking = bookingRepository.save(booking);
 
@@ -161,6 +168,7 @@ public class BookingServiceImpl implements BookingService {
 
         /* ================= UPDATE BOOKING STATUS ================= */
 
+        // Admin Action: Changing the status (e.g., PENDING -> CONFIRMED or REJECTED).
         @Override
         public BookingResponseDTO updateBookingStatus(Long bookingId, String status) {
                 Booking booking = bookingRepository.findById(bookingId)
@@ -174,12 +182,8 @@ public class BookingServiceImpl implements BookingService {
                 }
 
                 booking.setBookingStatus(newStatus);
-
-                // If rejected or cancelled, make the car available again
-                if (newStatus == BookingStatus.REJECTED || newStatus == BookingStatus.CANCELLED) {
-                        // booking.getCar().setStatus(CarStatus.AVAILABLE); // Car is always available
-                        // now
-                }
+                // Note: If rejected, the car becomes free for others because the intersection
+                // query checks status.
 
                 Booking savedBooking = bookingRepository.save(booking);
                 return mapToResponseDTO(savedBooking);
@@ -187,31 +191,12 @@ public class BookingServiceImpl implements BookingService {
 
         /* ================= CANCEL BOOKING ================= */
 
+        // User Action: Cancelling a reservation.
         @Override
         public BookingResponseDTO cancelBooking(Long bookingId) {
 
                 Booking booking = bookingRepository.findById(bookingId)
                                 .orElseThrow(() -> new RuntimeException("Booking not found"));
-
-                // Allow cancellation of PENDING or CONFIRMED bookings
-                // Optional: Prevent if already PAID? Or process refund manually?
-                // For now, allow cancellation even if paid (Admin will refund), but maybe
-                // logging it.
-                // Or restrict if startDate is in past?
-
-                String currentUserEmail = SecurityContextHolder.getContext().getAuthentication().getName();
-                if (!booking.getUser().getEmail().equals(currentUserEmail)) {
-                        // Check if admin? For now assume User service calls this. Admin has separate
-                        // flow or same.
-                        // Ideally check roles. But for safety:
-                        // throw new RuntimeException("Unauthorized to cancel this booking");
-                        // Wait, AdminController might use this too.
-                        // Let's assume this method is invoked by User Controller primarily or check
-                        // roles.
-                        // Ideally we should inject User/Admin check or have separate methods.
-                        // Re-reading code: BookingController has cancelBooking endpoint.
-                        // Assuming current logic is fine for now, but let's add basic state check.
-                }
 
                 if (booking.getBookingStatus() == BookingStatus.CANCELLED) {
                         throw new RuntimeException("Booking is already cancelled");
@@ -222,9 +207,6 @@ public class BookingServiceImpl implements BookingService {
                 }
 
                 booking.setBookingStatus(BookingStatus.CANCELLED);
-
-                // If Paid, maybe mark as REFUND_NEEDED?
-                // For now simple status update.
 
                 Booking savedBooking = bookingRepository.save(booking);
                 return mapToResponseDTO(savedBooking);

@@ -24,6 +24,8 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
+    // Creates a new booking request.
+    // The user selects a car and dates, and we verify if it's possible.
     @PostMapping
     public ResponseEntity<ApiResponse<BookingResponseDTO>> createBooking(
             @RequestBody BookingRequestDTO bookingRequestDTO) {
@@ -32,6 +34,7 @@ public class BookingController {
                 .ok(new ApiResponse<>("Booking created successfully", true, createdBooking));
     }
 
+    // Fetches a specific booking.
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<BookingResponseDTO>> getBookingById(
             @PathVariable Long id) {
@@ -42,25 +45,23 @@ public class BookingController {
         return ResponseEntity.status(404).body(new ApiResponse<>("Booking not found", false, null));
     }
 
+    // Admin: View all bookings in the system to manage them.
     @GetMapping
     public ResponseEntity<ApiResponse<List<BookingResponseDTO>>> getAllBookings() {
         List<BookingResponseDTO> bookings = bookingService.getAllBookings();
         return ResponseEntity.ok(new ApiResponse<>("All bookings retrieved", true, bookings));
     }
 
-    @GetMapping("/customer/{customerId}")
-    public ResponseEntity<ApiResponse<List<BookingResponseDTO>>> getBookingsByCustomer(
-            @PathVariable Long customerId) {
-        List<BookingResponseDTO> bookings = bookingService.getBookingsByCustomer(customerId);
-        return ResponseEntity.ok(new ApiResponse<>("Customer bookings retrieved", true, bookings));
-    }
-
+    // Customer: "My Bookings" page.
+    // Shows only the bookings belonging to the currently logged-in user.
     @GetMapping("/my-bookings")
     public ResponseEntity<ApiResponse<List<BookingResponseDTO>>> getBookingsForLoggedInUser() {
         List<BookingResponseDTO> bookings = bookingService.getBookingsForLoggedInUser();
         return ResponseEntity.ok(new ApiResponse<>("Your bookings retrieved", true, bookings));
     }
 
+    // Admin: Approve or Reject a booking.
+    // Changes the status from PENDING to CONFIRMED (or REJECTED).
     @PutMapping("/{id}/status/{status}")
     public ResponseEntity<ApiResponse<BookingResponseDTO>> updateBookingStatus(
             @PathVariable Long id, @PathVariable String status) {
@@ -73,6 +74,8 @@ public class BookingController {
                 .body(new ApiResponse<>("Failed to update status", false, null));
     }
 
+    // User/Admin: Cancel a booking.
+    // If plans change, this sets the status to CANCELLED.
     @PutMapping("/{id}/cancel")
     public ResponseEntity<ApiResponse<BookingResponseDTO>> cancelBooking(
             @PathVariable Long id) {

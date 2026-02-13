@@ -43,10 +43,15 @@ const BookCar = () => {
         setFormData({ ...formData, [e.target.name]: value });
     };
 
+    // When the user clicks "Confirm Booking":
+    // 1. Check if they have a license.
+    // 2. Validate dates (no past dates, return must be after pickup).
+    // 3. Send the request to the backend.
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
 
+        // 1. Driving License Check
         if (!user.drivingLicenceImage) {
             alert("You must upload your Driving License in your Profile before booking a car.");
             navigate('/profile');
@@ -58,7 +63,7 @@ const BookCar = () => {
         const pDate = new Date(formData.pickupDate);
         const dDate = new Date(formData.dropDate);
 
-        // Additional check for past dates even if HTML5 min attribute is bypassed
+        // 2. Date Validations
         const todayStr = new Date().toISOString().split('T')[0];
         if (formData.pickupDate < todayStr) {
             setError("Pickup date cannot be in the past.");
@@ -80,6 +85,7 @@ const BookCar = () => {
             return;
         }
 
+        // 3. Submit Booking
         try {
             const bookingPayload = {
                 carId: parseInt(carId),
